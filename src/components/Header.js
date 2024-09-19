@@ -1,13 +1,17 @@
-import {css} from '@emotion/css';
+/** @jsxImportSource @emotion/react */
+import {css} from '@emotion/react';
 
 const Header = () => {
     return (
-        <header>
+        <header css={css`
+            width: 100%;
+            display: flex;
+            
+        `}>
             <h1>Screenworks, Inc.</h1>
             <nav>
                 <ul css={css`
-                    color: red;
-                    text-decoration: none;
+                    list-style-type: none
                 `}>
                     <li>About</li>
                     <li>Contact</li>
