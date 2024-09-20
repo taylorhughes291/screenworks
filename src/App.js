@@ -6,10 +6,17 @@ import Hero from './components/Hero';
 function App() {
   return (
     <div className="App" css={css`
-      
     `}>
-      <Header></Header>
-      <Hero></Hero>
+      <div className="hero-container" css={css`
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      `}>
+        <Header></Header>
+        <Hero overrideStyles={css`
+          flex: 1;
+        `}></Hero>
+      </div>
     </div>
   );
 }
