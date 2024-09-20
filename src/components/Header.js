@@ -6,10 +6,10 @@ const Header = () => {
         <header css={css`
             width: 100%;
             display: flex;
-            
+
         `}>
             <h1>Screenworks, Inc.</h1>
-            <nav>
+            <nav css={css`display: none;`}>
                 <ul css={css`
                     list-style-type: none
                 `}>
