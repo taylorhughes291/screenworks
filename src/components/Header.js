@@ -5,11 +5,11 @@ import burgerMenu from '../assets/burger-menu.svg';
 const Header = () => {
     return (
         <header css={css`
-            width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid black;
+            padding: 5px 10px;
         `}>
             <h1>Screenworks, Inc.</h1>
             <img src={burgerMenu} alt="hamburger menu" css={css`
