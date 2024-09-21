@@ -2,17 +2,45 @@
 import {css} from '@emotion/react';
 import burgerMenu from '../assets/burger-menu.svg';
 import screenworksLogo from '../assets/screenworks-logo.svg';
+import { colorPallete, commonColors } from '../themes';
 
 const Header = () => {
+    const colorArray = Object.keys(colorPallete).map((item, index) => {
+        return colorPallete[item]
+    });
+
+    const ColorPalleteRender = () => {
+        return (<div css={css`
+            display: flex;
+            margin: 5px 0 5px 10px;
+        `}>{colorArray.map((item, index) => {
+            return (
+                <div key={index} css={css`
+                    width: 20px;
+                    height: 20px;
+                    background-color: ${item}
+                `} />
+            )
+        })}</div>)
+    }
     return (
         <header css={css`
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
             border-bottom: 1px solid black;
-            padding: 5px 10px;
+            padding: 10px 10px 5px 5px;
+            background-color: ${commonColors.white}
         `}>
-            <img src={screenworksLogo} alt="screenworks logo"/>
+            <div css={css`
+                display: flex;
+                flex-direction: column;
+            `}>
+                <img src={screenworksLogo} alt="screenworks logo" css={css`
+                    max-width: 300px;
+                `}/>
+                <ColorPalleteRender />
+            </div>
             <img src={burgerMenu} alt="hamburger menu" css={css`
                 width: 30px;
                 height: 30px;
