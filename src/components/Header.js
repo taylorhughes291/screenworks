@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import {css} from '@emotion/react';
 import burgerMenu from '../assets/burger-menu.svg';
+import screenworksLogo from '../assets/screenworks-logo.svg';
 
 const Header = () => {
     return (
@@ -11,7 +12,7 @@ const Header = () => {
             border-bottom: 1px solid black;
             padding: 5px 10px;
         `}>
-            <h1>Screenworks, Inc.</h1>
+            <img src={screenworksLogo} alt="screenworks logo"/>
             <img src={burgerMenu} alt="hamburger menu" css={css`
                 width: 30px;
                 height: 30px;
