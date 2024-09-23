@@ -22,18 +22,22 @@ const Hero = ({overrideStyles}) => {
                 flex-direction: column;
                 align-items: center;
                 border: 2px solid ${colorPalette.color5};
-                padding: 10px 10px 15px;
+                padding: 10px 15px 15px;
                 border-radius: 10px;
                 background-color: ${colorPalette.color2}CC;
             `}>
                 <h2 css={css`
                     margin: 0 0 15px;
-                    max-width: 380px;
-                    color: ${colorPalette.color5}
+                    max-width: 360px;
                 `}>Custom Screenprinting serving Southern California and beyond.</h2>
                 <button css={css`
-                    padding: 10px 20px;
-                    border-radius: 20px;
+                    padding: 10px 30px;
+                    border-radius: 10px;
+                    border: 1px solid ${colorPalette.color5};
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: ${colorPalette.color5};
+                    background-color: ${colorPalette.color4}
                 `}>Get a Quote</button>
             </div> 
             <DownArrow 

@@ -6,6 +6,9 @@ import Hero from './components/Hero';
 function App() {
   return (
     <div className="App" css={css`
+      font-family: "Sawarabi Mincho", serif;
+      font-weight: 400;
+      font-style: normal;
     `}>
       <div className="hero-container" css={css`
         height: 100vh;
