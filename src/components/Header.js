@@ -2,11 +2,11 @@
 import {css} from '@emotion/react';
 import burgerMenu from '../assets/burger-menu.svg';
 import screenworksLogo from '../assets/screenworks-logo.svg';
-import { colorPallete, commonColors } from '../themes';
+import { colorPalette, commonColors } from '../themes';
 
 const Header = () => {
-    const colorArray = Object.keys(colorPallete).map((item, index) => {
-        return colorPallete[item]
+    const colorArray = Object.keys(colorPalette).map((item, index) => {
+        return colorPalette[item]
     });
 
     const ColorPalleteRender = () => {
