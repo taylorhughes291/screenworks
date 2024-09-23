@@ -21,8 +21,16 @@ const Hero = ({overrideStyles}) => {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                border: 2px solid ${colorPalette.color5};
+                padding: 10px 10px 15px;
+                border-radius: 10px;
+                background-color: ${colorPalette.color2}CC;
             `}>
-                <h2>Custom Screenprinting serving Southern California and beyond.</h2>
+                <h2 css={css`
+                    margin: 0 0 15px;
+                    max-width: 380px;
+                    color: ${colorPalette.color5}
+                `}>Custom Screenprinting serving Southern California and beyond.</h2>
                 <button css={css`
                     padding: 10px 20px;
                     border-radius: 20px;
