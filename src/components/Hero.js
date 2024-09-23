@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import {css} from '@emotion/react';
+import DownArrow from './DownArrow';
+import {colorPalette} from '../themes';
 
 const Hero = ({overrideStyles}) => {
     return (
@@ -12,6 +14,7 @@ const Hero = ({overrideStyles}) => {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
             ${overrideStyles}
         `}>
             <div css={css`
@@ -24,7 +27,14 @@ const Hero = ({overrideStyles}) => {
                     padding: 10px 20px;
                     border-radius: 20px;
                 `}>Get a Quote</button>
-            </div>
+            </div> 
+            <DownArrow 
+                overrideStyles={css`
+                    position: absolute;
+                    bottom: 0;
+                `}
+                fill={colorPalette.color5}
+            />
         </div>
     )
 };
