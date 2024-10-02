@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import {css} from '@emotion/react';
-import burgerMenu from '../assets/burger-menu.svg';
 import screenworksLogo from '../assets/screenworks-logo.svg';
 import { colorPalette, commonColors } from '../themes';
+import HamburgerMenu from './HamburgerMenu';
 
 const Header = () => {
     const colorArray = Object.keys(colorPalette).map((item, index) => {
@@ -41,20 +41,7 @@ const Header = () => {
                 `}/>
                 <ColorPalleteRender />
             </div>
-            <img src={burgerMenu} alt="hamburger menu" css={css`
-                width: 30px;
-                height: 30px;
-            `}/>
-            <nav css={css`display: none;`}>
-                <ul css={css`
-                    list-style-type: none
-                `}>
-                    <li>About</li>
-                    <li>Contact</li>
-                    <li>Our Story</li>
-                    <li>Photos</li>
-                </ul>
-            </nav>
+            <HamburgerMenu />
       </header>
     )
 }
