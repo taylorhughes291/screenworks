@@ -4,9 +4,13 @@ import burgerMenu from '../assets/burger-menu.svg';
 import {css} from '@emotion/react';
 import xIcon from '../assets/x-symbol.svg';
 import { colorPalette } from '../themes';
+import { Link } from 'react-router-dom';
 
 const HamburgerMenu = () => {
     const [showMenu, setShowMenu] = useState(false);
+    const onSelect = () => {
+        setShowMenu(false);
+    };
 
     return (
         <>
@@ -66,13 +70,17 @@ const HamburgerMenu = () => {
                             li {
                                 margin-bottom: 15px;
                                 font-weight: 500;
+                                a {
+                                    text-decoration: none;
+                                    color: inherit;
+                                }
                             }
                         `}>
-                            <li>About</li>
-                            <li>Contact</li>
-                            <li>Our Story</li>
-                            <li>Photos</li>
-                            <li>FAQ</li>
+                            <li><Link to="/about" onClick={onSelect}>About</Link></li>
+                            <li><Link to="/contact" onClick={onSelect}>Contact</Link></li>
+                            <li><Link to="/story" onClick={onSelect}>Our Story</Link></li>
+                            <li><Link to="/photos" onClick={onSelect}>Photos</Link></li>
+                            <li><Link to="/faq" onClick={onSelect}>FAQ</Link></li>
                         </ul>
                     </nav>
                 </>
