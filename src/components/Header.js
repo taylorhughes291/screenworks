@@ -3,6 +3,7 @@ import {css} from '@emotion/react';
 import screenworksLogo from '../assets/screenworks-logo.svg';
 import { colorPalette, commonColors } from '../themes';
 import HamburgerMenu from './HamburgerMenu';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const colorArray = Object.keys(colorPalette).map((item, index) => {
@@ -36,9 +37,11 @@ const Header = () => {
                 display: flex;
                 flex-direction: column;
             `}>
-                <img src={screenworksLogo} alt="screenworks logo" css={css`
-                    max-width: 300px;
-                `}/>
+                <Link to="/">
+                    <img src={screenworksLogo} alt="screenworks logo" css={css`
+                        max-width: 300px;
+                    `}/>
+                </Link>
                 <ColorPalleteRender />
             </div>
             <HamburgerMenu />
