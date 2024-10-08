@@ -1,9 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import {css} from '@emotion/react';
 import Header from './components/Header';
-import Hero from './components/Hero';
+import Home from './components/pages/Home';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />
+    }
+  ])
   return (
     <div className="App" css={css`
       font-family: "Sawarabi Mincho", serif;
@@ -16,9 +23,7 @@ function App() {
         flex-direction: column;
       `}>
         <Header></Header>
-        <Hero overrideStyles={css`
-          flex: 1;
-        `}></Hero>
+        <RouterProvider router={router} />
       </div>
     </div>
   );
