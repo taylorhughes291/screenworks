@@ -22,21 +22,21 @@ const InfoPage = ({title, imgSrc, description, children}) => {
                     box-sizing: border-box;
                 `}
             >
-                <h2 
+                {title && (<h2 
                     css={css`
                         margin: 0 0 8px;
                     `}
                 >
                     {title}
-                </h2>
-                <img src={imgSrc} alt="screenworks founding" />
-                <p 
+                </h2>)}
+                {imgSrc && (<img src={imgSrc} alt="screenworks founding" />)}
+                {description && (<p 
                     css={css`
                         margin: 10px 10px 2px;
                     `}
                 >
                     {description}
-                </p>
+                </p>)}
                 {children}
             </div>
         </div>
