@@ -8,7 +8,6 @@ import Story from "./components/pages/Story";
 import Photos from "./components/pages/Photos";
 import Faq from "./components/pages/Faq";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import * as contentful from "contentful";
 
 const AppLayout = () => {
   return (
@@ -36,14 +35,6 @@ const AppLayout = () => {
 };
 
 function App() {
-  let client = contentful.createClient({
-    space: process.env.REACT_APP_CONTENTFUL_SPACE_KEY,
-    accessToken: process.env.REACT_APP_CONTENTFUL_API_TOKEN,
-  });
-  client
-    .getEntries()
-    .then((entry) => console.log(entry))
-    .catch((err) => console.log(err));
   const router = createBrowserRouter([
     {
       path: "/",
