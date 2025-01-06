@@ -2,8 +2,23 @@
 import { css } from "@emotion/react";
 import DownArrow from "./DownArrow";
 import { colorPalette } from "../themes";
+import { useFetchDatoCms } from "../helpers/customHooks";
 
 const Hero = ({ overrideStyles }) => {
+  const query = `query MyQuery {
+    screenworksSite {
+      homepageTitle
+      callToActionLocation
+      callToActionTitle
+      homepageCoverImage {
+        url
+      }
+    }
+  }`;
+
+  const cmsFetch = useFetchDatoCms(query);
+  const pageData = cmsFetch?.screenworksSite;
+
   return (
     <div
       css={css`
@@ -36,9 +51,9 @@ const Hero = ({ overrideStyles }) => {
             max-width: 360px;
           `}
         >
-          Custom Screenprinting serving Southern California and beyond.
+          {pageData?.homepageTitle}
         </h2>
-        <button
+        <a
           css={css`
             padding: 10px 30px;
             border-radius: 10px;
@@ -47,10 +62,13 @@ const Hero = ({ overrideStyles }) => {
             font-weight: 600;
             color: ${colorPalette.color5};
             background-color: ${colorPalette.color4};
+            text-decoration: none;
           `}
+          href={pageData?.callToActionLocation}
+          role="button"
         >
-          Get a Quote
-        </button>
+          {pageData?.callToActionTitle}
+        </a>
       </div>
       <DownArrow
         overrideStyles={css`
