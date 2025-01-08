@@ -22,7 +22,7 @@ const Hero = ({ overrideStyles }) => {
   return (
     <div
       css={css`
-        background-image: url("https://picsum.photos/200/200");
+        background-image: url(${pageData?.homepageCoverImage?.url});
         background-size: contain;
         width: 100%;
         height: 100%;

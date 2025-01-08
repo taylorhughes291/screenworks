@@ -33,7 +33,16 @@ const InfoPage = ({ title, imgSrc, description, children }) => {
             {title}
           </h2>
         )}
-        {imgSrc && <img src={imgSrc} alt="screenworks founding" />}
+        {imgSrc && (
+          <img
+            src={imgSrc}
+            alt="screenworks founding"
+            css={css`
+              max-width: 100%;
+              max-height: 100%;
+            `}
+          />
+        )}
         {description && (
           <p
             css={css`

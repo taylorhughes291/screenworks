@@ -1,12 +1,33 @@
 import InfoPage from "../InfoPage";
+import { useFetchDatoCms } from "../../helpers/customHooks";
+import { StructuredText } from "react-datocms";
 
 const About = () => {
+  const query = `query MyQuery {
+  screenworksSite {
+    aboutPageDescription {
+      value
+      blocks
+      links
+    }
+    aboutPageImage {
+      url
+    }
+    aboutPageTitle
+  }
+}`;
+
+  const cmsData = useFetchDatoCms(query);
+  const pageData = cmsData?.screenworksSite;
+  console.log(cmsData);
   return (
     <InfoPage
-      title="Family owned since 2004"
-      imgSrc="https://picsum.photos/300/250"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    />
+      title={pageData?.aboutPageTitle}
+      imgSrc={pageData?.aboutPageImage?.url}
+      description=""
+    >
+      <StructuredText data={pageData?.aboutPageDescription}></StructuredText>
+    </InfoPage>
   );
 };
 
