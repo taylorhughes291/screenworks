@@ -19,7 +19,6 @@ const About = () => {
 
   const cmsData = useFetchDatoCms(query);
   const pageData = cmsData?.screenworksSite;
-  console.log(cmsData);
   return (
     <InfoPage
       title={pageData?.aboutPageTitle}
