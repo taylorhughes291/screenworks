@@ -1,30 +1,29 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import InfoPage from "../InfoPage";
+import { useFetchDatoCms } from "../../helpers/customHooks";
+import { StructuredText } from "react-datocms";
 
 const Photos = () => {
-  const photoData = [
-    {
-      imgSrc: "https://picsum.photos/300/250",
-      caption:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-      altLabel: "Lorem ipsum dolor sit amet",
-    },
-    {
-      imgSrc: "https://picsum.photos/300/250",
-      caption:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-      altLabel: "Lorem ipsum dolor sit amet",
-    },
-    {
-      imgSrc: "https://picsum.photos/300/250",
-      caption:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-      altLabel: "Lorem ipsum dolor sit amet",
-    },
-  ];
+  const query = `query MyQuery {
+    screenworksSite {
+      photoGalleryTitle
+      photoGallery {
+        photo {
+          url
+        }
+        photoCaption {
+          blocks
+          links
+          value
+        }
+      }
+    }
+  }`;
+  const cmsData = useFetchDatoCms(query);
+  const pageData = cmsData?.screenworksSite;
 
-  const photoRender = photoData.map((item, index) => {
+  const photoRender = pageData?.photoGallery.map((item, index) => {
     return (
       <div
         key={index}
@@ -32,23 +31,47 @@ const Photos = () => {
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-bottom: 20px;
+          margin-bottom: 30px;
         `}
       >
-        <img src={item.imgSrc} alt={item.altLabel} />
-        <p
+        <img
+          src={item?.photo?.url}
+          alt=""
           css={css`
-            margin: 5px 0 0;
-            text-align: center;
-            font-size: 13px;
+            max-width: 100%;
+          `}
+        />
+        <div
+          css={css`
+            margin-top: 5px;
+            p {
+              margin: 0;
+              text-align: center;
+              padding: 0 5px;
+            }
           `}
         >
-          {item.caption}
-        </p>
+          <StructuredText
+            data={item?.photoCaption}
+            css={css`
+              margin: 0;
+            `}
+          />
+        </div>
       </div>
     );
   });
-  return <InfoPage title="Photo Gallery">{photoRender}</InfoPage>;
+  return (
+    <InfoPage title={pageData?.photoGalleryTitle}>
+      <div
+        css={css`
+          margin-top: 10px;
+        `}
+      >
+        {photoRender}
+      </div>
+    </InfoPage>
+  );
 };
 
 export default Photos;
