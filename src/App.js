@@ -7,9 +7,17 @@ import Contact from "./components/pages/Contact";
 import Story from "./components/pages/Story";
 import Photos from "./components/pages/Photos";
 import Faq from "./components/pages/Faq";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import Footer from "./components/Footer";
+import {
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+  useLocation,
+} from "react-router-dom";
 
 const AppLayout = () => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
     <div
       className="App"
@@ -22,13 +30,15 @@ const AppLayout = () => {
       <div
         className="hero-container"
         css={css`
-          height: 100vh;
+          min-height: 100vh;
+          height: ${pathname === "/" ? "100vh" : "100%"};
           display: flex;
           flex-direction: column;
         `}
       >
         <Header />
         <Outlet />
+        <Footer />
       </div>
     </div>
   );

@@ -56,7 +56,7 @@ const Faq = () => {
           margin-top: 20px;
         `}
       >
-        {faqRender}
+        {/* {faqRender} */}
       </div>
     </InfoPage>
   );
