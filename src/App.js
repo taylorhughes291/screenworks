@@ -26,7 +26,7 @@ const AppLayout = () => {
     <div
       className="App"
       css={css`
-        font-family: "Sawarabi Mincho", serif;
+        font-family: "Raleway", serif;
         font-weight: 400;
         font-style: normal;
       `}
