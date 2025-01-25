@@ -9,3 +9,5 @@ export const colorPalette = {
 export const commonColors = {
   white: "#FFFFFF",
 };
+
+export const backgroundColor = colorPalette.color2;

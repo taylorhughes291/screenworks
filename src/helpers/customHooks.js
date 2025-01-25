@@ -33,3 +33,13 @@ export const useFetchDatoCms = (query) => {
 
   return { ...data, isFetching };
 };
+
+export const useOnce = (callback) => {
+  const [hasRun, setHasRun] = useState(false);
+  useEffect(() => {
+    if (!hasRun) {
+      callback();
+      setHasRun(true);
+    }
+  }, [callback, hasRun]);
+};

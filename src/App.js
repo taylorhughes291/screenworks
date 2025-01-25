@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { useEffect } from "react";
 import Header from "./components/Header";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
@@ -8,16 +9,19 @@ import Story from "./components/pages/Story";
 import Photos from "./components/pages/Photos";
 import Faq from "./components/pages/Faq";
 import Footer from "./components/Footer";
-import {
-  createBrowserRouter,
-  Outlet,
-  RouterProvider,
-  useLocation,
-} from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { backgroundColor } from "./themes";
 
 const AppLayout = () => {
-  const { pathname } = useLocation();
-  console.log(pathname);
+  useEffect(() => {
+    // Set the background style on the body tag
+    document.body.style.backgroundColor = backgroundColor;
+
+    // Cleanup function to reset the background color when the component unmounts
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
+  }, []);
   return (
     <div
       className="App"
@@ -28,18 +32,18 @@ const AppLayout = () => {
       `}
     >
       <div
-        className="hero-container"
+        className="outlet-container"
         css={css`
-          min-height: 100vh;
-          height: ${pathname === "/" ? "100vh" : "100%"};
+          flex: 1;
           display: flex;
           flex-direction: column;
+          min-height: 100vh;
         `}
       >
         <Header />
         <Outlet />
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };
