@@ -10,27 +10,36 @@ const Footer = () => {
       phoneNumbers {
         name
         value
+        primary
       }
       emails {
         name
         value
+        primary
       }
       address
     }
   }`;
   const cmsData = useFetchDatoCms(query);
   const pageData = cmsData?.screenworksSite;
-  console.log(pageData);
+  const primaryPhone = pageData?.phoneNumbers.find(
+    (item) => item.primary,
+  )?.value;
+  const primaryEmail = pageData?.emails.find((item) => item.primary)?.value;
 
   return (
     <div
       css={css`
-        height: 200px;
         background-color: ${colorPalette.color4};
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 20px;
+        p,
+        a {
+          font-size: 13px;
+          margin: 0;
+        }
       `}
     >
       <img
@@ -38,19 +47,24 @@ const Footer = () => {
         alt="screenworks logo"
         css={css`
           max-width: 250px;
+          margin-bottom: 8px;
         `}
       />
+      <p>&copy;Copyright 2025</p>
       <div
         css={css`
-          margin: 8px 0 0;
           padding-left: 5px;
           text-align: center;
+          margin: 13px 0;
           p {
             margin: 0;
+            font-size: 13px;
           }
         `}
         dangerouslySetInnerHTML={{ __html: pageData?.address }}
       ></div>
+      <p>{primaryPhone}</p>
+      <a href={`mailto:${primaryEmail}`}>{primaryEmail}</a>
     </div>
   );
 };
