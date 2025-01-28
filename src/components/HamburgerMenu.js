@@ -1,16 +1,21 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
+import { useState, useRef } from "react";
 import burgerMenu from "../assets/burger-menu.svg";
 import { css } from "@emotion/react";
 import xIcon from "../assets/x-symbol.svg";
 import { colorPalette } from "../themes";
 import { Link } from "react-router-dom";
+import useOutsideClick from "../helpers/customHooks";
 
 const HamburgerMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef(null);
   const onSelect = () => {
+    console.log("here");
     setShowMenu(false);
   };
+
+  useOutsideClick(menuRef, onSelect);
 
   return (
     <>
@@ -50,6 +55,7 @@ const HamburgerMenu = () => {
               border: 1px solid ${colorPalette.color3};
               border-radius: 4px;
             `}
+            ref={menuRef}
           >
             <img
               src={xIcon}
