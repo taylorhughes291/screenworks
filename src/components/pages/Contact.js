@@ -54,16 +54,28 @@ const Contact = () => {
         >
           Address
         </h2>
-        <h3
+        <div
           css={css`
-            margin: 0;
             padding-left: 5px;
-            p {
-              margin: 0;
-            }
           `}
-          dangerouslySetInnerHTML={{ __html: pageData?.address }}
-        ></h3>
+        >
+          <h3
+            css={css`
+              margin: 0;
+            `}
+          >
+            Screenworks, Inc.
+          </h3>
+          <h3
+            css={css`
+              margin: 0;
+              p {
+                margin: 0;
+              }
+            `}
+            dangerouslySetInnerHTML={{ __html: pageData?.address }}
+          ></h3>
+        </div>
       </div>
     </InfoPage>
   );
