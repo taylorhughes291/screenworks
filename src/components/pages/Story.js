@@ -24,6 +24,7 @@ const Story = () => {
       title={pageData?.storyPageTitle}
       imgSrc={pageData?.storyPhoto?.url}
       description=""
+      isLoaded={cmsData.isLoaded}
     >
       <StructuredText data={pageData?.storyDescription} />
     </InfoPage>

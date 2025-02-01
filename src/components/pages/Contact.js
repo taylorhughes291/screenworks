@@ -30,6 +30,7 @@ const Contact = () => {
       title={pageData?.contactUsTitle}
       imgSrc={pageData?.contactUsImage?.url}
       description=""
+      isLoaded={cmsData.isLoaded}
     >
       <div
         css={css`

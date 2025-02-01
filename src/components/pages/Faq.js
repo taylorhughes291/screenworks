@@ -50,7 +50,11 @@ const Faq = () => {
   });
 
   return (
-    <InfoPage title={pageData?.faqTitle} imgSrc={pageData?.faqPhoto?.url}>
+    <InfoPage
+      title={pageData?.faqTitle}
+      imgSrc={pageData?.faqPhoto?.url}
+      isLoaded={cmsData.isLoaded}
+    >
       <div
         css={css`
           margin-top: 20px;

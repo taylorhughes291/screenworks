@@ -62,7 +62,7 @@ const Photos = () => {
     );
   });
   return (
-    <InfoPage title={pageData?.photoGalleryTitle}>
+    <InfoPage title={pageData?.photoGalleryTitle} isLoaded={cmsData.isLoaded}>
       <div
         css={css`
           margin-top: 10px;

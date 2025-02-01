@@ -24,6 +24,7 @@ const About = () => {
       title={pageData?.aboutPageTitle}
       imgSrc={pageData?.aboutPageImage?.url}
       description=""
+      isLoaded={cmsData.isLoaded}
     >
       <StructuredText data={pageData?.aboutPageDescription}></StructuredText>
     </InfoPage>
