@@ -2,23 +2,8 @@
 import { css } from "@emotion/react";
 import DownArrow from "./DownArrow";
 import { colorPalette } from "../themes";
-import { useFetchDatoCms } from "../helpers/customHooks";
 
-const Hero = ({ overrideStyles }) => {
-  const query = `query MyQuery {
-    screenworksSite {
-      homepageTitle
-      callToActionLocation
-      callToActionTitle
-      homepageCoverImage {
-        url
-      }
-    }
-  }`;
-
-  const cmsFetch = useFetchDatoCms(query);
-  const pageData = cmsFetch?.screenworksSite;
-
+const Hero = ({ overrideStyles, pageData }) => {
   return (
     <div
       css={css`

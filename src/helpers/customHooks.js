@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 
 export const useFetchDatoCms = (query) => {
   const [data, setData] = useState(null);
-  const [isFetching, setIsFetching] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    setIsFetching(true);
     fetch("https://graphql.datocms.com/", {
       method: "POST",
       headers: {
@@ -27,11 +26,11 @@ export const useFetchDatoCms = (query) => {
 
   useEffect(() => {
     if (data) {
-      setIsFetching(false);
+      setIsLoaded(true);
     }
   }, [data]);
 
-  return { ...data, isFetching };
+  return { ...data, isLoaded };
 };
 
 export const useOnce = (callback) => {
