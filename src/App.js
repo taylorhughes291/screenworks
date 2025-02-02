@@ -11,6 +11,7 @@ import Faq from "./components/pages/Faq";
 import Footer from "./components/Footer";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { backgroundColor } from "./themes";
+import { useLocation } from "react-router-dom";
 
 const AppLayout = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const AppLayout = () => {
       document.body.style.backgroundColor = "";
     };
   }, []);
+  const isHomePage = useLocation().pathname === "/";
   return (
     <div
       className="App"
@@ -31,16 +33,17 @@ const AppLayout = () => {
         font-style: normal;
       `}
     >
+      {/* We need this styled thus so footer doesn't show on loading screen */}
       <div
         className="outlet-container"
         css={css`
-          flex: 1;
           display: flex;
           flex-direction: column;
           min-height: 100vh;
         `}
       >
-        <Header />
+        {/* Header has to be in the Home component for layout to work on the homepage */}
+        {!isHomePage && <Header />}
         <Outlet />
       </div>
       <Footer />
