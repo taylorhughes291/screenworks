@@ -27,7 +27,7 @@ const Hero = ({ overrideStyles, pageData }) => {
           border: 2px solid ${colorPalette.color5};
           padding: 10px 15px 15px;
           border-radius: 10px;
-          background-color: ${colorPalette.color2}CC;
+          background-color: ${colorPalette.color2};
         `}
       >
         <h2

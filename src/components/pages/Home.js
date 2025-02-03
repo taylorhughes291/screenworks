@@ -4,8 +4,9 @@ import Hero from "../Hero";
 import LoadingWrapper from "../LoadingWrapper";
 import { useFetchDatoCms } from "../../helpers/customHooks";
 import Header from "../Header";
+import HomepageInfoSection from "../HomepageInfoSection";
 
-const Home = ({ children }) => {
+const Home = () => {
   const query = `query MyQuery {
     screenworksSite {
       homepageTitle
@@ -14,12 +15,18 @@ const Home = ({ children }) => {
       homepageCoverImage {
         url
       }
+      infoSections {
+        callToAction
+        callToActionLocation
+        infoSectionSubtitle
+      }
     }
   }`;
 
   const cmsFetch = useFetchDatoCms(query);
   const pageData = cmsFetch?.screenworksSite;
   const isLoaded = cmsFetch.isLoaded;
+
   return (
     <LoadingWrapper isLoaded={isLoaded}>
       <div
@@ -37,15 +44,11 @@ const Home = ({ children }) => {
           pageData={pageData}
         ></Hero>
       </div>
-      <div
-        className="info-section"
-        css={css`
-          height: 400px;
-          width: 100%;
-        `}
-      >
-        Info section
-      </div>
+      {pageData?.infoSections.map((section, index) => {
+        return (
+          <HomepageInfoSection key={index} index={index} section={section} />
+        );
+      })}
     </LoadingWrapper>
   );
 };
