@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { backgroundColor } from "./themes";
 import { useLocation } from "react-router-dom";
+import { HomepageScrollProvider } from "./components/HomepageScrollProvider";
 
 const AppLayout = () => {
   useEffect(() => {
@@ -59,7 +60,11 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: (
+            <HomepageScrollProvider>
+              <Home />
+            </HomepageScrollProvider>
+          ),
         },
         {
           path: "/about",

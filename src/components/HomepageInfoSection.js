@@ -1,17 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { colorPalette } from "../themes";
+import { useContext } from "react";
+import { HomepageScrollContext } from "./HomepageScrollProvider";
 
 const HomepageInfoSection = ({ index, section }) => {
+  const { scrollRef } = useContext(HomepageScrollContext);
+
   return (
     <div
-      key={index}
+      id={`info-section-${index + 1}`}
       css={css`
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 20px;
       `}
+      ref={index === 0 ? scrollRef : null}
     >
       <h2>{section.infoSectionSubtitle}</h2>
       <a

@@ -1,12 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { HomepageScrollContext } from "./HomepageScrollProvider";
+import { useContext } from "react";
 
 const DownArrow = ({ overrideStyles, width = "30", fill = "#000" }) => {
+  const { scrollRef } = useContext(HomepageScrollContext);
+  const handleClick = () => {
+    scrollRef.current.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <div
       css={css`
         ${overrideStyles}
       `}
+      onClick={handleClick}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
