@@ -6,6 +6,12 @@ export const colorPalette = {
   color5: "#1C1D21",
 };
 
+export const rotatableColorPallete = (exclusions = [], inclusions = []) => {
+  return Object.values(colorPalette)
+    .filter((color) => !exclusions.includes(color))
+    .concat(inclusions);
+};
+
 export const commonColors = {
   white: "#FFFFFF",
 };
