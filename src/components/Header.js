@@ -59,7 +59,10 @@ const Header = () => {
             src={screenworksLogo}
             alt="screenworks logo"
             css={css`
-              max-width: 300px;
+              max-width: 250px;
+              @media (${breakpoints.mobileMedium}) {
+                max-width: 300px;
+              }
               @media (${breakpoints.tablet}) {
                 max-width: 400px;
               }

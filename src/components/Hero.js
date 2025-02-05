@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import DownArrow from "./DownArrow";
-import { colorPalette } from "../themes";
+import { colorPalette, breakpoints } from "../themes";
 
 const Hero = ({ overrideStyles, pageData }) => {
   return (
@@ -24,16 +24,25 @@ const Hero = ({ overrideStyles, pageData }) => {
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
           border: 2px solid ${colorPalette.color5};
-          padding: 10px 15px 15px;
+          padding: 10px 20px 20px;
           border-radius: 10px;
           background-color: ${colorPalette.color2};
+          margin: 0 20px;
+          @media (${breakpoints.tablet}) {
+            width: 500px;
+            height: 200px;
+          }
         `}
       >
         <h2
           css={css`
             margin: 0 0 15px;
-            max-width: 360px;
+            @media (${breakpoints.tablet}) {
+              font-size: 30px;
+              margin: 0 0 30px;
+            }
           `}
         >
           {pageData?.homepageTitle}
@@ -48,6 +57,12 @@ const Hero = ({ overrideStyles, pageData }) => {
             color: ${colorPalette.color5};
             background-color: ${colorPalette.color4};
             text-decoration: none;
+            @media (${breakpoints.tablet}) {
+              padding: 15px 40px;
+              font-size: 20px;
+              font-weight: 700;
+              border: 2px solid ${colorPalette.color5};
+            }
           `}
           href={pageData?.callToActionLocation}
           role="button"
