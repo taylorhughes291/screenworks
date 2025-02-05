@@ -9,11 +9,14 @@ const ContactSection = ({ sectionName, sectionData }) => {
     return value;
   };
   return (
-    <>
+    <div
+      css={css`
+        margin-bottom: 25px;
+      `}
+    >
       <h2
         css={css`
-          margin: 0;
-          text-decoration: underline;
+          margin: 0 0 7px;
         `}
       >
         {sectionName}
@@ -21,7 +24,7 @@ const ContactSection = ({ sectionName, sectionData }) => {
       <ul
         css={css`
           list-style-type: none;
-          padding: 0 0 0 5px;
+          padding: 0 0 0 10px;
           margin: 0;
         `}
       >
@@ -30,7 +33,7 @@ const ContactSection = ({ sectionName, sectionData }) => {
             <li
               key={index}
               css={css`
-                margin-bottom: 5px;
+                margin-bottom: 7px;
               `}
             >
               <b>{item?.name}</b>: {renderValue(item?.value)}
@@ -38,7 +41,7 @@ const ContactSection = ({ sectionName, sectionData }) => {
           );
         })}
       </ul>
-    </>
+    </div>
   );
 };
 

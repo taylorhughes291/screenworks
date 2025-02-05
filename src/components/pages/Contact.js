@@ -36,7 +36,7 @@ const Contact = () => {
         css={css`
           width: 100%;
           box-sizing: border-box;
-          padding: 10px 16px;
+          padding: 20px 16px;
           h3 {
             font-size: 16px;
           }
@@ -49,15 +49,14 @@ const Contact = () => {
         <ContactSection sectionName="Email" sectionData={pageData?.emails} />
         <h2
           css={css`
-            margin: 0;
-            text-decoration: underline;
+            margin: 0 0 7px;
           `}
         >
           Address
         </h2>
         <div
           css={css`
-            padding-left: 5px;
+            padding-left: 10px;
           `}
         >
           <h3
