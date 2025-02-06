@@ -1,3 +1,6 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+
 export const colorPalette = {
   color1: "#D23427",
   color2: "#9EC6EC",
@@ -22,4 +25,19 @@ export const breakpoints = {
   mobileMedium: "min-width: 340px",
   tablet: "min-width: 768px",
   desktop: "min-width: 1024px",
+};
+
+export const commonStyles = {
+  basicInfoTabletStyles: css`
+    @media (${breakpoints.tablet}) {
+      div.info-page-content {
+        display: block;
+      }
+      img.info-page-image {
+        max-width: 300px;
+        float: left;
+        margin-right: 20px;
+      }
+    }
+  `,
 };

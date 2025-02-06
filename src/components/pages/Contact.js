@@ -3,34 +3,49 @@ import { css } from "@emotion/react";
 import InfoPage from "../InfoPage";
 import { useFetchDatoCms } from "../../helpers/customHooks";
 import ContactSection from "../ContactSection";
+import { breakpoints } from "../../themes";
 
 const Contact = () => {
   const query = `query MyQuery {
-  screenworksSite {
-    contactUsTitle
-    contactUsImage {
-      url
+    screenworksSite {
+      contactUsTitle
+      contactUsImage {
+        url
+      }
+      phoneNumbers {
+        name
+        value
+      }
+      emails {
+        name
+        value
+      }
+      address
     }
-    phoneNumbers {
-      name
-      value
-    }
-    emails {
-      name
-      value
-    }
-    address
-  }
-}`;
+  }`;
 
   const cmsData = useFetchDatoCms(query);
   const pageData = cmsData?.screenworksSite;
+
+  const contactStyles = css`
+    @media (${breakpoints.tablet}) {
+      div.info-page-content {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      img.info-page-image {
+        max-width: 300px;
+      }
+    }
+  `;
+
   return (
     <InfoPage
       title={pageData?.contactUsTitle}
       imgSrc={pageData?.contactUsImage?.url}
       description=""
       isLoaded={cmsData.isLoaded}
+      overrideStyles={contactStyles}
     >
       <div
         css={css`
@@ -39,6 +54,9 @@ const Contact = () => {
           padding: 20px 16px;
           h3 {
             font-size: 16px;
+          }
+          @media (${breakpoints.tablet}) {
+            padding: 0 0 0 25px;
           }
         `}
       >
