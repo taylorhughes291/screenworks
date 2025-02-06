@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import InfoPage from "../InfoPage";
 import { useFetchDatoCms } from "../../helpers/customHooks";
 import { StructuredText } from "react-datocms";
+import { commonStyles, breakpoints } from "../../themes";
 
 const Faq = () => {
   const query = `query MyQuery {
@@ -54,10 +55,14 @@ const Faq = () => {
       title={pageData?.faqTitle}
       imgSrc={pageData?.faqPhoto?.url}
       isLoaded={cmsData.isLoaded}
+      overrideStyles={commonStyles.basicInfoTabletStyles}
     >
       <div
         css={css`
           margin-top: 20px;
+          @media (${breakpoints.tablet}) {
+            margin-top: 0;
+          }
         `}
       >
         {faqRender}

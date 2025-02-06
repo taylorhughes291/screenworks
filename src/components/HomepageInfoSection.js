@@ -1,6 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { colorPalette, rotatableColorPallete, commonColors } from "../themes";
+import {
+  colorPalette,
+  rotatableColorPallete,
+  commonColors,
+  breakpoints,
+} from "../themes";
 import { useContext } from "react";
 import { HomepageScrollContext } from "./HomepageScrollProvider";
 import backgroundImage from "../assets/background-homepage-info-section.jpg";
@@ -30,6 +35,9 @@ const HomepageInfoSection = ({ index, section }) => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          @media (${breakpoints.tablet}) {
+            min-height: 280px;
+          }
         `}
         ref={index === 0 ? scrollRef : null}
       >
@@ -37,6 +45,11 @@ const HomepageInfoSection = ({ index, section }) => {
           css={css`
             text-align: center;
             margin: 0 0 15px;
+            @media (${breakpoints.tablet}) {
+              font-size: 27px;
+              margin: 0 0 30px;
+              max-width: 570px;
+            }
           `}
         >
           {section.infoSectionSubtitle}
@@ -51,6 +64,11 @@ const HomepageInfoSection = ({ index, section }) => {
             color: ${color5};
             background-color: ${color4};
             text-decoration: none;
+            @media (${breakpoints.tablet}) {
+              padding: 15px 40px;
+              font-size: 20px;
+              font-weight: 700;
+            }
           `}
           href={section.callToActionLocation}
           role="button"

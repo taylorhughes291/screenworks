@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { colorPalette } from "../themes";
+import { colorPalette, breakpoints } from "../themes";
 import screenworksLogo from "../assets/screenworks-logo.svg";
 import { useFetchDatoCms } from "../helpers/customHooks";
 
@@ -39,6 +39,9 @@ const Footer = () => {
         a {
           font-size: 13px;
           margin: 0;
+          @media (${breakpoints.tablet}) {
+            font-size: 15px;
+          }
         }
       `}
     >
@@ -48,6 +51,10 @@ const Footer = () => {
         css={css`
           max-width: 250px;
           margin-bottom: 8px;
+          @media (${breakpoints.tablet}) {
+            max-width: 300px;
+            margin-bottom: 12px;
+          }
         `}
       />
       <p>&copy;Copyright 2025</p>
