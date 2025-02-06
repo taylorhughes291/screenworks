@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import InfoPage from "../InfoPage";
 import { useFetchDatoCms } from "../../helpers/customHooks";
 import { StructuredText } from "react-datocms";
+import { breakpoints } from "../../themes";
 
 const Photos = () => {
   const query = `query MyQuery {
@@ -32,6 +33,9 @@ const Photos = () => {
           flex-direction: column;
           align-items: center;
           margin-bottom: 30px;
+          &:last-of-type {
+            margin-bottom: 0;
+          }
         `}
       >
         <img
@@ -48,6 +52,9 @@ const Photos = () => {
               margin: 0;
               text-align: center;
               padding: 0 5px;
+            }
+            @media (${breakpoints.tablet}) {
+              margin-top: 12px;
             }
           `}
         >
