@@ -38,6 +38,9 @@ export const commonStyles = {
         float: left;
         margin-right: 20px;
       }
+      p {
+        margin: 0;
+      }
     }
   `,
 };

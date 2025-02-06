@@ -11,7 +11,6 @@ const HamburgerMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
   const onSelect = () => {
-    console.log("here");
     setShowMenu(false);
   };
 

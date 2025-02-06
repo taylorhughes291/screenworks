@@ -20,6 +20,7 @@ const Story = () => {
 
   const cmsData = useFetchDatoCms(query);
   const pageData = cmsData?.screenworksSite;
+
   return (
     <InfoPage
       title={pageData?.storyPageTitle}

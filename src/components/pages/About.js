@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import InfoPage from "../InfoPage";
 import { useFetchDatoCms } from "../../helpers/customHooks";
 import { StructuredText } from "react-datocms";
@@ -31,13 +29,7 @@ const About = () => {
       isLoaded={cmsData.isLoaded}
       overrideStyles={commonStyles.basicInfoTabletStyles}
     >
-      <div
-        css={css`
-          p {
-            margin: 0;
-          }
-        `}
-      >
+      <div>
         <StructuredText data={pageData?.aboutPageDescription}></StructuredText>
       </div>
     </InfoPage>
