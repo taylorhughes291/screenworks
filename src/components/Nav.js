@@ -1,47 +1,51 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { breakpoints } from "../themes";
 import { Link } from "react-router-dom";
 
-const Nav = () => {
+const Nav = ({ overrideStyles = css``, children, onSelect }) => {
+  const handleSelect = () => {
+    onSelect && onSelect();
+  };
   return (
     <nav
       css={css`
-        display: none;
-        @media (${breakpoints.desktop}) {
-          display: block;
-        }
+        ${overrideStyles}
       `}
     >
+      {children}
       <ul
         css={css`
-          display: flex;
           list-style-type: none;
-          li {
-            margin-right: 30px;
-            font-size: 18px;
-            font-weight: 600;
-            a {
-              text-decoration: none;
-              color: inherit;
-            }
+          a {
+            text-decoration: none;
+            color: inherit;
           }
         `}
       >
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/about" onClick={handleSelect}>
+            About
+          </Link>
         </li>
         <li>
-          <Link to="/contact">Contact</Link>
+          <Link to="/contact" onClick={handleSelect}>
+            Contact
+          </Link>
         </li>
         <li>
-          <Link to="/story">Our Story</Link>
+          <Link to="/story" onClick={handleSelect}>
+            Our Story
+          </Link>
         </li>
         <li>
-          <Link to="/photos">Photos</Link>
+          <Link to="/photos" onClick={handleSelect}>
+            Photos
+          </Link>
         </li>
         <li>
-          <Link to="/faq">FAQ</Link>
+          <Link to="/faq" onClick={handleSelect}>
+            FAQ
+          </Link>
         </li>
       </ul>
     </nav>

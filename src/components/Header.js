@@ -76,7 +76,22 @@ const Header = () => {
         <ColorPalleteRender />
       </div>
       <HamburgerMenu />
-      <Nav />
+      <Nav
+        overrideStyles={css`
+          display: none;
+          ul {
+            display: flex;
+            li {
+              margin-right: 30px;
+              font-size: 18px;
+              font-weight: 600;
+            }
+          }
+          @media (${breakpoints.desktop}) {
+            display: block;
+          }
+        `}
+      />
     </header>
   );
 };
