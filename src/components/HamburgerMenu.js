@@ -17,7 +17,13 @@ const HamburgerMenu = () => {
   useOutsideClick(menuRef, onSelect);
 
   return (
-    <>
+    <div
+      css={css`
+        @media (${breakpoints.desktop}) {
+          display: none;
+        }
+      `}
+    >
       <img
         src={burgerMenu}
         alt="hamburger menu"
@@ -130,7 +136,7 @@ const HamburgerMenu = () => {
           </nav>
         </>
       )}
-    </>
+    </div>
   );
 };
 

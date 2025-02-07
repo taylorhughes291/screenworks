@@ -4,6 +4,7 @@ import screenworksLogo from "../assets/screenworks-logo.svg";
 import { colorPalette, commonColors, breakpoints } from "../themes";
 import HamburgerMenu from "./HamburgerMenu";
 import { Link } from "react-router-dom";
+import Nav from "./Nav";
 
 const Header = () => {
   const colorArray = Object.keys(colorPalette).map((item, index) => {
@@ -46,6 +47,9 @@ const Header = () => {
         border-bottom: 1px solid black;
         padding: 10px 10px 5px 5px;
         background-color: ${commonColors.white};
+        @media (${breakpoints.desktop}) {
+          align-items: center;
+        }
       `}
     >
       <div
@@ -72,6 +76,7 @@ const Header = () => {
         <ColorPalleteRender />
       </div>
       <HamburgerMenu />
+      <Nav />
     </header>
   );
 };
