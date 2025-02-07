@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import burgerMenu from "../assets/burger-menu.svg";
 import { css } from "@emotion/react";
 import xIcon from "../assets/x-symbol.svg";
-import { colorPalette } from "../themes";
+import { colorPalette, breakpoints } from "../themes";
 import { Link } from "react-router-dom";
 import useOutsideClick from "../helpers/customHooks";
 
@@ -11,7 +11,6 @@ const HamburgerMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
   const onSelect = () => {
-    console.log("here");
     setShowMenu(false);
   };
 
@@ -26,6 +25,10 @@ const HamburgerMenu = () => {
         css={css`
           width: 30px;
           height: 30px;
+          @media (${breakpoints.tablet}) {
+            width: 40px;
+            height: 40px;
+          }
         `}
       />
       {showMenu && (
@@ -53,7 +56,10 @@ const HamburgerMenu = () => {
               right: 0;
               top: 0;
               border: 1px solid ${colorPalette.color3};
-              border-radius: 4px;
+              border-radius: 4px 0 0 7px;
+              @media (${breakpoints.tablet}) {
+                width: 300px;
+              }
             `}
             ref={menuRef}
           >
@@ -67,6 +73,10 @@ const HamburgerMenu = () => {
                 right: 10px;
                 width: 15px;
                 height: 15px;
+                @media (${breakpoints.tablet}) {
+                  width: 20px;
+                  height: 20px;
+                }
               `}
             />
             <ul
@@ -80,6 +90,13 @@ const HamburgerMenu = () => {
                   a {
                     text-decoration: none;
                     color: inherit;
+                  }
+                }
+                @media (${breakpoints.tablet}) {
+                  margin: 35px 20px;
+                  li {
+                    margin-bottom: 20px;
+                    font-size: 20px;
                   }
                 }
               `}

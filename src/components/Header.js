@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import screenworksLogo from "../assets/screenworks-logo.svg";
-import { colorPalette, commonColors } from "../themes";
+import { colorPalette, commonColors, breakpoints } from "../themes";
 import HamburgerMenu from "./HamburgerMenu";
 import { Link } from "react-router-dom";
 
@@ -26,6 +26,10 @@ const Header = () => {
                 width: 20px;
                 height: 20px;
                 background-color: ${item};
+                @media (${breakpoints.tablet}) {
+                  width: 25px;
+                  height: 25px;
+                }
               `}
             />
           );
@@ -55,7 +59,13 @@ const Header = () => {
             src={screenworksLogo}
             alt="screenworks logo"
             css={css`
-              max-width: 300px;
+              max-width: 250px;
+              @media (${breakpoints.mobileMedium}) {
+                max-width: 300px;
+              }
+              @media (${breakpoints.tablet}) {
+                max-width: 400px;
+              }
             `}
           />
         </Link>
