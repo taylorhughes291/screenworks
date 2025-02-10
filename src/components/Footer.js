@@ -42,6 +42,9 @@ const Footer = () => {
           @media (${breakpoints.tablet}) {
             font-size: 15px;
           }
+          @media (${breakpoints.desktop}) {
+            font-size: 16px;
+          }
         }
       `}
     >
@@ -54,6 +57,9 @@ const Footer = () => {
           @media (${breakpoints.tablet}) {
             max-width: 300px;
             margin-bottom: 12px;
+          }
+          @media (${breakpoints.desktop}) {
+            max-width: 340px;
           }
         `}
       />
