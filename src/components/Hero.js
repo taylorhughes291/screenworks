@@ -9,6 +9,7 @@ const Hero = ({ overrideStyles, pageData }) => {
       css={css`
         background-image: url(${pageData?.homepageCoverImage?.url});
         background-size: cover;
+        background-position: center center;
         width: 100%;
         height: 100%;
         text-align: center;

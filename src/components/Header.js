@@ -89,6 +89,7 @@ const Header = () => {
           }
           @media (${breakpoints.desktop}) {
             display: block;
+            margin-bottom: 10px;
           }
         `}
       />

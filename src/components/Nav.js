@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
+import { breakpoints } from "../themes";
 
 const Nav = ({ overrideStyles = css``, children, onSelect }) => {
   const handleSelect = () => {
@@ -19,6 +20,11 @@ const Nav = ({ overrideStyles = css``, children, onSelect }) => {
           a {
             text-decoration: none;
             color: inherit;
+          }
+          @media (${breakpoints.desktop}) {
+            li a {
+              font-size: 22px;
+            }
           }
         `}
       >
