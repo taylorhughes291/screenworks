@@ -17,6 +17,11 @@ const InfoPage = ({
         css={css`
           width: 100%;
           background-color: ${colorPalette.color2};
+          @media (${breakpoints.desktop}) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
           ${overrideStyles}
         `}
       >
@@ -33,6 +38,10 @@ const InfoPage = ({
             box-sizing: border-box;
             @media (${breakpoints.tablet}) {
               padding: 15px 20px;
+            }
+            @media (${breakpoints.desktop}) {
+              margin: 25px 30px;
+              max-width: 1300px;
             }
           `}
         >
@@ -54,6 +63,9 @@ const InfoPage = ({
               display: flex;
               flex-direction: column;
               align-items: center;
+              @media (${breakpoints.desktop}) {
+                font-size: 20px;
+              }
             `}
           >
             {imgSrc && (
