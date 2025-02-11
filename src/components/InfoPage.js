@@ -30,7 +30,7 @@ const InfoPage = ({
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 8px;
+            padding: 10px;
             border: 2px solid ${colorPalette.color1};
             border-radius: 6px;
             background-color: ${commonColors.white};
@@ -42,20 +42,21 @@ const InfoPage = ({
             @media (${breakpoints.desktop}) {
               margin: 25px 30px;
               max-width: 1300px;
+              align-self: stretch;
             }
           `}
         >
           {title && (
-            <h2
+            <h1
               css={css`
-                margin: 0 0 8px;
+                margin: 0 0 10px;
                 @media (${breakpoints.tablet}) {
                   margin-bottom: 20px;
                 }
               `}
             >
               {title}
-            </h2>
+            </h1>
           )}
           <div
             className="info-page-content"
