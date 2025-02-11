@@ -27,7 +27,7 @@ const Story = () => {
       imgSrc={pageData?.storyPhoto?.url}
       description=""
       isLoaded={cmsData.isLoaded}
-      overrideStyles={commonStyles.basicInfoTabletStyles}
+      overrideStyles={commonStyles.basicInfoStyles}
     >
       <StructuredText data={pageData?.storyDescription} />
     </InfoPage>

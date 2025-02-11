@@ -28,7 +28,7 @@ export const breakpoints = {
 };
 
 export const commonStyles = {
-  basicInfoTabletStyles: css`
+  basicInfoStyles: css`
     @media (${breakpoints.tablet}) {
       div.info-page-content {
         display: block;
@@ -40,6 +40,11 @@ export const commonStyles = {
       }
       p {
         margin: 0;
+      }
+    }
+    @media (${breakpoints.desktop}) {
+      img.info-page-image {
+        max-width: 40%;
       }
     }
   `,

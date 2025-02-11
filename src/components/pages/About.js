@@ -27,7 +27,7 @@ const About = () => {
       imgSrc={pageData?.aboutPageImage?.url}
       description=""
       isLoaded={cmsData.isLoaded}
-      overrideStyles={commonStyles.basicInfoTabletStyles}
+      overrideStyles={commonStyles.basicInfoStyles}
     >
       <div>
         <StructuredText data={pageData?.aboutPageDescription}></StructuredText>
