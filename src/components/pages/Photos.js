@@ -25,6 +25,7 @@ const Photos = () => {
   const pageData = cmsData?.screenworksSite;
 
   const photoRender = pageData?.photoGallery.map((item, index) => {
+    const indexEven = index % 2 === 0;
     return (
       <div
         key={index}
@@ -36,6 +37,10 @@ const Photos = () => {
           &:last-of-type {
             margin-bottom: 0;
           }
+          @media (${breakpoints.tablet}) {
+            flex-direction: ${indexEven ? "row" : "row-reverse"};
+            align-items: flex-start;
+          }
         `}
       >
         <img
@@ -43,6 +48,13 @@ const Photos = () => {
           alt=""
           css={css`
             max-width: 100%;
+            @media (${breakpoints.tablet}) {
+              max-width: 60%;
+              max-height: 700px;
+            }
+            @media (${breakpoints.desktop}) {
+              max-width: 50%;
+            }
           `}
         />
         <div
@@ -54,7 +66,11 @@ const Photos = () => {
               padding: 0 5px;
             }
             @media (${breakpoints.tablet}) {
-              margin-top: 12px;
+              margin-top: 5px;
+              p {
+                text-align: start;
+                margin-left: 10px;
+              }
             }
           `}
         >
@@ -73,6 +89,11 @@ const Photos = () => {
       <div
         css={css`
           margin-top: 10px;
+          @media (${breakpoints.tablet}) {
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+          }
         `}
       >
         {photoRender}

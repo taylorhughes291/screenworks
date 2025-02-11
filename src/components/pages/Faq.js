@@ -55,7 +55,7 @@ const Faq = () => {
       title={pageData?.faqTitle}
       imgSrc={pageData?.faqPhoto?.url}
       isLoaded={cmsData.isLoaded}
-      overrideStyles={commonStyles.basicInfoTabletStyles}
+      overrideStyles={commonStyles.basicInfoStyles}
     >
       <div
         css={css`

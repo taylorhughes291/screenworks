@@ -57,6 +57,11 @@ const Contact = () => {
           }
           @media (${breakpoints.tablet}) {
             padding: 0 0 0 25px;
+            h2 {
+              font-size: 22px;
+            }
+          }
+          @media (${breakpoints.desktop}) {
           }
         `}
       >
@@ -77,22 +82,37 @@ const Contact = () => {
             padding-left: 10px;
           `}
         >
-          <h3
+          <div
+            className="contact-address"
             css={css`
-              margin: 0;
-            `}
-          >
-            Screenworks, Inc.
-          </h3>
-          <h3
-            css={css`
-              margin: 0;
               p {
-                margin: 0;
+                font-size: 16px;
+                font-weight: bold;
+              }
+              @media (${breakpoints.tablet}) {
+                p {
+                  font-size: 20px;
+                }
               }
             `}
-            dangerouslySetInnerHTML={{ __html: pageData?.address }}
-          ></h3>
+          >
+            <p
+              css={css`
+                margin: 0;
+              `}
+            >
+              Screenworks, Inc.
+            </p>
+            <p
+              css={css`
+                margin: 0;
+                p {
+                  margin: 0;
+                }
+              `}
+              dangerouslySetInnerHTML={{ __html: pageData?.address }}
+            ></p>
+          </div>
         </div>
       </div>
     </InfoPage>
