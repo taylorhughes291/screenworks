@@ -9,6 +9,7 @@ import Story from "./components/pages/Story";
 import Photos from "./components/pages/Photos";
 import Faq from "./components/pages/Faq";
 import Footer from "./components/Footer";
+import ErrorPage from "./components/pages/ErrorPage";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { backgroundColor } from "./themes";
 import { useLocation } from "react-router-dom";
@@ -57,6 +58,7 @@ function App() {
     {
       path: "/",
       element: <AppLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/",
