@@ -19,6 +19,7 @@ const Faq = () => {
       }
       faqPhoto {
         url
+        alt
       }
     }
   }`;
@@ -53,7 +54,7 @@ const Faq = () => {
   return (
     <InfoPage
       title={pageData?.faqTitle}
-      imgSrc={pageData?.faqPhoto?.url}
+      imgData={pageData?.faqPhoto}
       isLoaded={cmsData.isLoaded}
       overrideStyles={commonStyles.basicInfoStyles}
     >

@@ -13,6 +13,7 @@ const About = () => {
       }
       aboutPageImage {
         url
+        alt
       }
       aboutPageTitle
     }
@@ -24,7 +25,7 @@ const About = () => {
   return (
     <InfoPage
       title={pageData?.aboutPageTitle}
-      imgSrc={pageData?.aboutPageImage?.url}
+      imgData={pageData?.aboutPageImage}
       description=""
       isLoaded={cmsData.isLoaded}
       overrideStyles={commonStyles.basicInfoStyles}

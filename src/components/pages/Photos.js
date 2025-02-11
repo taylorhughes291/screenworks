@@ -12,6 +12,7 @@ const Photos = () => {
       photoGallery {
         photo {
           url
+          alt
         }
         photoCaption {
           blocks
@@ -45,7 +46,7 @@ const Photos = () => {
       >
         <img
           src={item?.photo?.url}
-          alt=""
+          alt={item?.photo?.alt}
           css={css`
             max-width: 100%;
             @media (${breakpoints.tablet}) {

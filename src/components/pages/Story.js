@@ -9,6 +9,7 @@ const Story = () => {
       storyPageTitle
       storyPhoto {
         url
+        alt
       }
       storyDescription {
         blocks
@@ -24,7 +25,7 @@ const Story = () => {
   return (
     <InfoPage
       title={pageData?.storyPageTitle}
-      imgSrc={pageData?.storyPhoto?.url}
+      imgData={pageData?.storyPhoto}
       description=""
       isLoaded={cmsData.isLoaded}
       overrideStyles={commonStyles.basicInfoStyles}

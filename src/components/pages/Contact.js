@@ -11,6 +11,7 @@ const Contact = () => {
       contactUsTitle
       contactUsImage {
         url
+        alt
       }
       phoneNumbers {
         name
@@ -42,7 +43,7 @@ const Contact = () => {
   return (
     <InfoPage
       title={pageData?.contactUsTitle}
-      imgSrc={pageData?.contactUsImage?.url}
+      imgData={pageData?.contactUsImage}
       description=""
       isLoaded={cmsData.isLoaded}
       overrideStyles={contactStyles}
