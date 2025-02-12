@@ -4,12 +4,13 @@ export const useFetchDatoCms = (query) => {
   const [data, setData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    fetch("https://graphql.datocms.com/", {
+    const fetchUrl = new URL(process.env.REACT_APP_QUERY_URL);
+    fetchUrl.pathname = "/swDataApi";
+    fetch(fetchUrl.href, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `Bearer ${process.env.REACT_APP_DATOCMS_API}`,
       },
       body: JSON.stringify({
         query,
