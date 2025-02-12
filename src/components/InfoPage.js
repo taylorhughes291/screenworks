@@ -5,7 +5,7 @@ import LoadingWrapper from "./LoadingWrapper";
 
 const InfoPage = ({
   title,
-  imgSrc,
+  imgData,
   description,
   children,
   isLoaded,
@@ -69,10 +69,10 @@ const InfoPage = ({
               }
             `}
           >
-            {imgSrc && (
+            {imgData?.url && (
               <img
-                src={imgSrc}
-                alt="screenworks founding"
+                src={imgData?.url}
+                alt={imgData?.alt}
                 className="info-page-image"
                 css={css`
                   max-width: 100%;
