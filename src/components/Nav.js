@@ -42,6 +42,11 @@ const Nav = ({ overrideStyles = css``, children, onSelect }) => {
             Contact
           </Link>
         </li>
+        <li id="quote-nav">
+          <Link to="/quote" onClick={handleSelect}>
+            Quote
+          </Link>
+        </li>
         <li id="story-nav">
           <Link to="/story" onClick={handleSelect}>
             Our Story
