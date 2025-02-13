@@ -2,6 +2,7 @@
 import { css } from "@emotion/react";
 import { useState } from "react";
 import InfoPage from "../InfoPage";
+import { colorPalette } from "../../themes";
 
 const Quote = () => {
   const [formData, setFormData] = useState({
@@ -32,15 +33,17 @@ const Quote = () => {
       <form
         onSubmit={handleSubmit}
         css={css`
-          //   background: white;
+          display: flex;
+          flex-direction: column;
           padding: 20px;
-          //   border-radius: 8px;
-          //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          //   max-width: 500px;
-          width: 100%;
+          div.quote-field-container {
+            display: flex;
+            flex-direction: column;
+          }
         `}
       >
         <div
+          className="quote-field-container"
           css={css`
             margin-bottom: 15px;
           `}
@@ -62,7 +65,6 @@ const Quote = () => {
             onChange={handleChange}
             required
             css={css`
-              width: 100%;
               padding: 10px;
               border: 1px solid #ddd;
               border-radius: 4px;
@@ -71,6 +73,7 @@ const Quote = () => {
           />
         </div>
         <div
+          className="quote-field-container"
           css={css`
             margin-bottom: 15px;
           `}
@@ -92,7 +95,6 @@ const Quote = () => {
             onChange={handleChange}
             required
             css={css`
-              width: 100%;
               padding: 10px;
               border: 1px solid #ddd;
               border-radius: 4px;
@@ -101,6 +103,7 @@ const Quote = () => {
           />
         </div>
         <div
+          className="quote-field-container"
           css={css`
             margin-bottom: 15px;
           `}
@@ -122,7 +125,6 @@ const Quote = () => {
             onChange={handleChange}
             required
             css={css`
-              width: 100%;
               padding: 10px;
               border: 1px solid #ddd;
               border-radius: 4px;
@@ -131,6 +133,7 @@ const Quote = () => {
           />
         </div>
         <div
+          className="quote-field-container"
           css={css`
             margin-bottom: 15px;
           `}
@@ -151,7 +154,6 @@ const Quote = () => {
             onChange={handleChange}
             required
             css={css`
-              width: 100%;
               padding: 10px;
               border: 1px solid #ddd;
               border-radius: 4px;
@@ -165,6 +167,7 @@ const Quote = () => {
           </select>
         </div>
         <div
+          className="quote-field-container"
           css={css`
             margin-bottom: 15px;
           `}
@@ -184,7 +187,6 @@ const Quote = () => {
             name="artFile"
             onChange={handleChange}
             css={css`
-              width: 100%;
               padding: 10px;
               border: 1px solid #ddd;
               border-radius: 4px;
@@ -193,8 +195,9 @@ const Quote = () => {
           />
         </div>
         <div
+          className="quote-field-container"
           css={css`
-            margin-bottom: 15px;
+            margin-bottom: 30px;
           `}
         >
           <label
@@ -213,7 +216,6 @@ const Quote = () => {
             onChange={handleChange}
             required
             css={css`
-              width: 100%;
               padding: 10px;
               border: 1px solid #ddd;
               border-radius: 4px;
@@ -225,11 +227,9 @@ const Quote = () => {
         <button
           type="submit"
           css={css`
-            width: 100%;
             padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
+            background-color: ${colorPalette.color4};
+            border: 1px solid ${colorPalette.color5};
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
