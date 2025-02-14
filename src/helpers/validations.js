@@ -15,16 +15,26 @@ const checkValidEmail = (value) => {
   return "Please enter a valid email.";
 };
 
+const checkOrderMinimum = (value) => {
+  const intValue = parseInt(value, 10);
+  if (intValue >= 24) {
+    return "";
+  }
+  return "You must order at least 24 garments.";
+};
+
 ////////////////////////////////
 // Validation Organization
 ////////////////////////////////
 
 const standardValidations = [requiredValidationFilled];
 const emailValidations = [checkValidEmail];
+const piecesValidations = [checkOrderMinimum];
 
 const validations = {
   standard: standardValidations,
   email: emailValidations,
+  pieces: piecesValidations,
 };
 
 ////////////////////////////////
