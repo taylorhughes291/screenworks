@@ -35,6 +35,11 @@ const checkFileSize = (files) => {
   return "Total file size must be less than 25MB.";
 };
 
+const checkFilesCount = (files) => {
+  if (files.length <= 5) return "";
+  return "You may only upload up to 5 files.";
+};
+
 ////////////////////////////////
 // Validation Organization
 ////////////////////////////////
@@ -42,7 +47,7 @@ const checkFileSize = (files) => {
 const standardValidations = [requiredValidationFilled];
 const emailValidations = [checkValidEmail];
 const piecesValidations = [checkOrderMinimum];
-const artFileValidations = [checkFileSize];
+const artFileValidations = [checkFileSize, checkFilesCount];
 
 const validations = {
   standard: standardValidations,
