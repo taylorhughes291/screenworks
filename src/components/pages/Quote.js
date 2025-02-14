@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { useState } from "react";
 import InfoPage from "../InfoPage";
 import { colorPalette } from "../../themes";
+import { handleValidations } from "../../helpers/validations";
 
 const Quote = () => {
   const [formData, setFormData] = useState({
@@ -27,6 +28,9 @@ const Quote = () => {
     // Handle form submission logic here
     console.log(formData);
   };
+
+  const validations = handleValidations(formData);
+  console.log(validations);
 
   return (
     <InfoPage title="Request a Quote">
