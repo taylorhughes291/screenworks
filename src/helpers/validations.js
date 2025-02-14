@@ -23,6 +23,18 @@ const checkOrderMinimum = (value) => {
   return "You must order at least 24 garments.";
 };
 
+const checkFileSize = (files) => {
+  let sumSize = 0;
+  for (let i = 0; i < files.length; i++) {
+    const fileSize = files.item(i).size;
+    sumSize += fileSize;
+  }
+  if (sumSize < 25 * 1024 * 1024) {
+    return "";
+  }
+  return "Total file size must be less than 25MB.";
+};
+
 ////////////////////////////////
 // Validation Organization
 ////////////////////////////////
@@ -30,11 +42,13 @@ const checkOrderMinimum = (value) => {
 const standardValidations = [requiredValidationFilled];
 const emailValidations = [checkValidEmail];
 const piecesValidations = [checkOrderMinimum];
+const artFileValidations = [checkFileSize];
 
 const validations = {
   standard: standardValidations,
   email: emailValidations,
   pieces: piecesValidations,
+  artFile: artFileValidations,
 };
 
 ////////////////////////////////

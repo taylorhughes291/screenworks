@@ -19,7 +19,7 @@ const Quote = () => {
     const { name, value, files } = e.target;
     setFormData({
       ...formData,
-      [name]: files ? files[0] : value,
+      [name]: files ? files : value,
     });
   };
 
@@ -189,6 +189,7 @@ const Quote = () => {
           <input
             type="file"
             name="artFile"
+            multiple
             onChange={handleChange}
             css={css`
               padding: 10px;
