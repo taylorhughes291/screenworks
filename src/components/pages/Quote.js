@@ -4,6 +4,7 @@ import { useState } from "react";
 import InfoPage from "../InfoPage";
 import { colorPalette } from "../../themes";
 import { handleValidations } from "../../helpers/validations";
+import { acceptedFileTypes } from "../../helpers/constants";
 
 const Quote = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +32,8 @@ const Quote = () => {
 
   const validations = handleValidations(formData);
   console.log(validations);
+
+  const inputFileTypes = acceptedFileTypes.join(",");
 
   return (
     <InfoPage title="Request a Quote">
@@ -197,6 +200,7 @@ const Quote = () => {
               border-radius: 4px;
               font-size: 16px;
             `}
+            accept={inputFileTypes}
           />
         </div>
         <div

@@ -1,3 +1,5 @@
+import { acceptedFileTypes } from "./constants";
+
 ////////////////////////////////
 // Individual Validations
 ////////////////////////////////
@@ -20,24 +22,39 @@ const checkOrderMinimum = (value) => {
   if (intValue >= 24) {
     return "";
   }
-  return "You must order at least 24 garments.";
+  return "Every quote must have at least 24 garments.";
 };
 
 const checkFileSize = (files) => {
-  let sumSize = 0;
-  for (let i = 0; i < files.length; i++) {
-    const fileSize = files.item(i).size;
-    sumSize += fileSize;
+  if (files) {
+    let sumSize = 0;
+    for (let i = 0; i < files.length; i++) {
+      const fileSize = files.item(i).size;
+      sumSize += fileSize;
+    }
+    if (sumSize >= 25 * 1024 * 1024) {
+      return "Total file size must be less than 25MB.";
+    }
   }
-  if (sumSize < 25 * 1024 * 1024) {
-    return "";
-  }
-  return "Total file size must be less than 25MB.";
+  return "";
 };
 
 const checkFilesCount = (files) => {
-  if (files.length <= 5) return "";
-  return "You may only upload up to 5 files.";
+  if (files && files.length > 5) return "You may only upload up to 5 files.";
+  return "";
+};
+
+const checkFileTypes = (files) => {
+  if (files) {
+    for (let i = 0; i < files.length; i++) {
+      const extension = "." + files[i].name.split(".").pop().toLowerCase();
+      console.log(extension);
+      if (!acceptedFileTypes.includes(extension)) {
+        return "You may only attach PDF or Image files.";
+      }
+    }
+  }
+  return "";
 };
 
 ////////////////////////////////
@@ -47,7 +64,7 @@ const checkFilesCount = (files) => {
 const standardValidations = [requiredValidationFilled];
 const emailValidations = [checkValidEmail];
 const piecesValidations = [checkOrderMinimum];
-const artFileValidations = [checkFileSize, checkFilesCount];
+const artFileValidations = [checkFileSize, checkFilesCount, checkFileTypes];
 
 const validations = {
   standard: standardValidations,
