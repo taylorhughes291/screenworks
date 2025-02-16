@@ -5,6 +5,7 @@ import InfoPage from "../InfoPage";
 import { colorPalette } from "../../themes";
 import { handleValidations } from "../../helpers/validations";
 import { acceptedFileTypes } from "../../helpers/constants";
+import { handleQuoteSubmit } from "../../helpers/requests";
 
 const Quote = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ const Quote = () => {
     email: "",
     pieces: "",
     garments: "",
-    artFile: null,
+    // artFile: null,
     description: "",
   });
 
@@ -27,7 +28,8 @@ const Quote = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log(formData);
+    const eventFormData = new FormData(e.target);
+    handleQuoteSubmit(eventFormData);
   };
 
   const validations = handleValidations(formData);
@@ -48,6 +50,7 @@ const Quote = () => {
             flex-direction: column;
           }
         `}
+        enctype="multipart/form-data"
       >
         <div
           className="quote-field-container"
@@ -189,7 +192,7 @@ const Quote = () => {
           >
             Art File:
           </label>
-          <input
+          {/* <input
             type="file"
             name="artFile"
             multiple
@@ -201,7 +204,7 @@ const Quote = () => {
               font-size: 16px;
             `}
             accept={inputFileTypes}
-          />
+          /> */}
         </div>
         <div
           className="quote-field-container"
