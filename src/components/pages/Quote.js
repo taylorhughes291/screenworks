@@ -192,7 +192,7 @@ const Quote = () => {
           >
             Art File:
           </label>
-          {/* <input
+          <input
             type="file"
             name="artFile"
             multiple
@@ -204,7 +204,7 @@ const Quote = () => {
               font-size: 16px;
             `}
             accept={inputFileTypes}
-          /> */}
+          />
         </div>
         <div
           className="quote-field-container"
