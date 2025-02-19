@@ -13,9 +13,10 @@ const Quote = () => {
     email: "",
     pieces: "",
     garments: "",
-    // artFile: null,
+    artFile: null,
     description: "",
   });
+  const [showViolations, setShowViolations] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -25,17 +26,41 @@ const Quote = () => {
     });
   };
 
+  const validations = handleValidations(formData);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    const eventFormData = new FormData(e.target);
-    handleQuoteSubmit(eventFormData);
+    let totalViolations = [];
+    Object.values(validations).forEach((value) => {
+      totalViolations = totalViolations.concat(value);
+    });
+    if (!totalViolations.length) {
+      // Handle form submission logic here
+      const eventFormData = new FormData(e.target);
+      handleQuoteSubmit(eventFormData);
+    } else {
+      setShowViolations(true);
+    }
   };
 
-  const validations = handleValidations(formData);
-  console.log(validations);
-
   const inputFileTypes = acceptedFileTypes.join(",");
+
+  const renderViolations = (inputName) => {
+    if (validations[inputName].length && showViolations) {
+      return (
+        <p
+          css={css`
+            margin: 0 0 5px;
+            color: ${colorPalette.color1};
+            font-size: 13px;
+          `}
+        >
+          {validations[inputName][0]}
+        </p>
+      );
+    }
+    return <></>;
+  };
 
   return (
     <InfoPage title="Request a Quote">
@@ -66,8 +91,9 @@ const Quote = () => {
               color: #555;
             `}
           >
-            Name:
+            Name*:
           </label>
+          {renderViolations("name")}
           <input
             type="text"
             name="name"
@@ -96,8 +122,9 @@ const Quote = () => {
               color: #555;
             `}
           >
-            Email:
+            Email*:
           </label>
+          {renderViolations("email")}
           <input
             type="email"
             name="email"
@@ -126,8 +153,9 @@ const Quote = () => {
               color: #555;
             `}
           >
-            How many pieces:
+            How many pieces*:
           </label>
+          {renderViolations("pieces")}
           <input
             type="number"
             name="pieces"
@@ -156,8 +184,9 @@ const Quote = () => {
               color: #555;
             `}
           >
-            Garments:
+            Garments*:
           </label>
+          {renderViolations("garments")}
           <select
             name="garments"
             value={formData.garments}
@@ -190,8 +219,9 @@ const Quote = () => {
               color: #555;
             `}
           >
-            Art File:
+            Art File*:
           </label>
+          {renderViolations("artFile")}
           <input
             type="file"
             name="artFile"
@@ -220,8 +250,9 @@ const Quote = () => {
               color: #555;
             `}
           >
-            Description:
+            Description*:
           </label>
+          {renderViolations("description")}
           <textarea
             name="description"
             value={formData.description}
@@ -252,6 +283,15 @@ const Quote = () => {
         >
           Submit
         </button>
+        <p
+          css={css`
+            margin: 15px 0 0;
+            font-size: 16px;
+            font-weight: 600;
+          `}
+        >
+          * required
+        </p>
       </form>
     </InfoPage>
   );
