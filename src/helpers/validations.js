@@ -5,24 +5,27 @@ import { acceptedFileTypes } from "./constants";
 ////////////////////////////////
 
 const requiredValidationFilled = (value) => {
-  if (value) return "";
-  return "This is a required field.";
+  if (value) return { label: "Required", error: false };
+  return { label: "Required", error: true };
 };
 
 const checkValidEmail = (value) => {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (emailPattern.test(value)) {
-    return "";
+    return { label: "Valid email required.", error: false };
   }
-  return "Please enter a valid email.";
+  return { label: "Please enter a valid email.", error: true };
 };
 
 const checkOrderMinimum = (value) => {
   const intValue = parseInt(value, 10);
   if (intValue >= 24) {
-    return "";
+    return {
+      label: "All orders must have 24 pieces at minimum.",
+      error: false,
+    };
   }
-  return "Every quote must have at least 24 garments.";
+  return { label: "All orders must have 24 pieces at minimum.", error: true };
 };
 
 const checkFileSize = (files) => {
@@ -33,28 +36,31 @@ const checkFileSize = (files) => {
       sumSize += fileSize;
     }
     if (sumSize >= 25 * 1024 * 1024) {
-      return "Total file size must be less than 25MB.";
+      return { label: "Total file size must be less than 25MB.", error: true };
     }
   }
-  return "";
+  return { label: "Total file size must be less than 25MB.", error: false };
 };
 
 const checkFilesCount = (files) => {
-  if (files && files.length > 5) return "You may only upload up to 5 files.";
-  return "";
+  if (files && files.length > 5)
+    return { label: "You may only upload up to 5 files.", error: true };
+  return { label: "You may only upload up to 5 files.", error: false };
 };
 
 const checkFileTypes = (files) => {
   if (files) {
     for (let i = 0; i < files.length; i++) {
       const extension = "." + files[i].name.split(".").pop().toLowerCase();
-      console.log(extension);
       if (!acceptedFileTypes.includes(extension)) {
-        return "You may only attach PDF or Image files.";
+        return {
+          label: "You may only attach PDF or Image files.",
+          error: true,
+        };
       }
     }
   }
-  return "";
+  return { label: "We accept PDF or any image files.", error: false };
 };
 
 ////////////////////////////////

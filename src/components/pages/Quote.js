@@ -32,7 +32,10 @@ const Quote = () => {
     e.preventDefault();
     let totalViolations = [];
     Object.values(validations).forEach((value) => {
-      totalViolations = totalViolations.concat(value);
+      const errors = value.filter((item) => {
+        return item.error;
+      });
+      totalViolations = totalViolations.concat(errors);
     });
     if (!totalViolations.length) {
       // Handle form submission logic here
@@ -46,20 +49,21 @@ const Quote = () => {
   const inputFileTypes = acceptedFileTypes.join(",");
 
   const renderViolations = (inputName) => {
-    if (validations[inputName].length && showViolations) {
+    return validations[inputName].map((item, index) => {
+      const styleViolation = item.error && showViolations;
       return (
         <p
+          key={index}
           css={css`
             margin: 0 0 5px;
-            color: ${colorPalette.color1};
             font-size: 13px;
+            ${styleViolation && `color: ${colorPalette.color1};`}
           `}
         >
-          {validations[inputName][0]}
+          {item.label}
         </p>
       );
-    }
-    return <></>;
+    });
   };
 
   return (
@@ -69,7 +73,7 @@ const Quote = () => {
         css={css`
           display: flex;
           flex-direction: column;
-          padding: 20px;
+          padding: 0 20px 20px;
           div.quote-field-container {
             display: flex;
             flex-direction: column;
@@ -91,7 +95,7 @@ const Quote = () => {
               color: #555;
             `}
           >
-            Name*:
+            Name:
           </label>
           {renderViolations("name")}
           <input
@@ -99,7 +103,6 @@ const Quote = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            required
             css={css`
               padding: 10px;
               border: 1px solid #ddd;
@@ -122,7 +125,7 @@ const Quote = () => {
               color: #555;
             `}
           >
-            Email*:
+            Email:
           </label>
           {renderViolations("email")}
           <input
@@ -130,7 +133,6 @@ const Quote = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            required
             css={css`
               padding: 10px;
               border: 1px solid #ddd;
@@ -153,7 +155,7 @@ const Quote = () => {
               color: #555;
             `}
           >
-            How many pieces*:
+            How many pieces:
           </label>
           {renderViolations("pieces")}
           <input
@@ -161,7 +163,6 @@ const Quote = () => {
             name="pieces"
             value={formData.pieces}
             onChange={handleChange}
-            required
             css={css`
               padding: 10px;
               border: 1px solid #ddd;
@@ -184,14 +185,13 @@ const Quote = () => {
               color: #555;
             `}
           >
-            Garments*:
+            Garments:
           </label>
           {renderViolations("garments")}
           <select
             name="garments"
             value={formData.garments}
             onChange={handleChange}
-            required
             css={css`
               padding: 10px;
               border: 1px solid #ddd;
@@ -219,7 +219,7 @@ const Quote = () => {
               color: #555;
             `}
           >
-            Art File*:
+            Art File:
           </label>
           {renderViolations("artFile")}
           <input
@@ -250,14 +250,13 @@ const Quote = () => {
               color: #555;
             `}
           >
-            Description*:
+            Description:
           </label>
           {renderViolations("description")}
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
-            required
             css={css`
               padding: 10px;
               border: 1px solid #ddd;
@@ -283,15 +282,6 @@ const Quote = () => {
         >
           Submit
         </button>
-        <p
-          css={css`
-            margin: 15px 0 0;
-            font-size: 16px;
-            font-weight: 600;
-          `}
-        >
-          * required
-        </p>
       </form>
     </InfoPage>
   );
