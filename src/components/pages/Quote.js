@@ -25,7 +25,7 @@ const Quote = () => {
     artFile: [],
     description: [],
   });
-  const [responseStatus, setResponseStatus] = useState(0);
+  const [responseStatus, setResponseStatus] = useState(-1);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -39,6 +39,10 @@ const Quote = () => {
     const formValidations = handleValidations(formData, responseStatus);
     setValidations(formValidations);
   }, [formData, responseStatus]);
+
+  useEffect(() => {
+    setResponseStatus(-1);
+  }, [formData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

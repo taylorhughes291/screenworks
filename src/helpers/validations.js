@@ -49,14 +49,16 @@ const checkFilesCount = (files, responseOverride) => {
 };
 
 const checkFileTypes = (files, responseOverride) => {
+  const errorReponse = {
+    label: "You may only attach PDF or Image files.",
+    error: true,
+  };
+  if (responseOverride) return errorReponse;
   if (files) {
     for (let i = 0; i < files.length; i++) {
       const extension = "." + files[i].name.split(".").pop().toLowerCase();
       if (!acceptedFileTypes.includes(extension)) {
-        return {
-          label: "You may only attach PDF or Image files.",
-          error: true,
-        };
+        return errorReponse;
       }
     }
   }
@@ -67,10 +69,20 @@ const checkFileTypes = (files, responseOverride) => {
 // Validation Organization
 ////////////////////////////////
 
-const standardValidations = [requiredValidationFilled];
-const emailValidations = [checkValidEmail];
-const piecesValidations = [checkOrderMinimum];
-const artFileValidations = [checkFileSize, checkFilesCount, checkFileTypes];
+const standardValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
+];
+const emailValidations = [
+  { name: "checkValidEmail", validation: checkValidEmail },
+];
+const piecesValidations = [
+  { name: "checkOrderMinimum", validation: checkOrderMinimum },
+];
+const artFileValidations = [
+  { name: "checkFileSize", validation: checkFileSize },
+  { name: "checkFilesCount", validation: checkFilesCount },
+  { name: "checkFileTypes", validation: checkFileTypes },
+];
 
 const validations = {
   standard: standardValidations,
@@ -88,21 +100,40 @@ const validate = (validation, value, responseOverride) => {
   return [validationResult];
 };
 
+const checkOverride = (responseMap, field, validationName) => {
+  if (responseMap) {
+    const fieldCheck = responseMap.type === field;
+    const validationCheck = responseMap.validationName === validationName;
+    if (fieldCheck && validationCheck) return true;
+  }
+  return false;
+};
+
 export const handleValidations = (formData, responseStatus) => {
   const errors = {};
 
   for (const field in formData) {
     let fieldErrors = [];
-    standardValidations.forEach((validation) => {
-      const response = responseMapping[responseStatus];
-      const override = response && response.type === field;
+    validations.standard.forEach((validation) => {
+      const override = checkOverride(
+        responseMapping[responseStatus],
+        field,
+        validation.name,
+      );
       fieldErrors = fieldErrors.concat(
-        validate(validation, formData[field], override),
+        validate(validation.validation, formData[field], override),
       );
     });
     if (validations[field]) {
       validations[field].forEach((validation) => {
-        fieldErrors = fieldErrors.concat(validate(validation, formData[field]));
+        const override = checkOverride(
+          responseMapping[responseStatus],
+          field,
+          validation.name,
+        );
+        fieldErrors = fieldErrors.concat(
+          validate(validation.validation, formData[field], override),
+        );
       });
     }
     errors[field] = fieldErrors;
