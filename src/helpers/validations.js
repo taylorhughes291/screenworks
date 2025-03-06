@@ -1,15 +1,15 @@
-import { acceptedFileTypes } from "./constants";
+import { acceptedFileTypes, responseMapping } from "./constants";
 
 ////////////////////////////////
 // Individual Validations
 ////////////////////////////////
 
-const requiredValidationFilled = (value) => {
-  if (value) return { label: "Required", error: false };
-  return { label: "Required", error: true };
+const requiredValidationFilled = (value, responseOverride) => {
+  if (responseOverride || !value) return { label: "Required", error: true };
+  return { label: "Required", error: false };
 };
 
-const checkValidEmail = (value) => {
+const checkValidEmail = (value, responseOverride) => {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (emailPattern.test(value)) {
     return { label: "Valid email required.", error: false };
@@ -17,7 +17,7 @@ const checkValidEmail = (value) => {
   return { label: "Please enter a valid email.", error: true };
 };
 
-const checkOrderMinimum = (value) => {
+const checkOrderMinimum = (value, responseOverride) => {
   const intValue = parseInt(value, 10);
   if (intValue >= 24) {
     return {
@@ -28,7 +28,7 @@ const checkOrderMinimum = (value) => {
   return { label: "All orders must have 24 pieces at minimum.", error: true };
 };
 
-const checkFileSize = (files) => {
+const checkFileSize = (files, responseOverride) => {
   if (files) {
     let sumSize = 0;
     for (let i = 0; i < files.length; i++) {
@@ -42,13 +42,13 @@ const checkFileSize = (files) => {
   return { label: "Total file size must be less than 25MB.", error: false };
 };
 
-const checkFilesCount = (files) => {
+const checkFilesCount = (files, responseOverride) => {
   if (files && files.length > 5)
     return { label: "You may only upload up to 5 files.", error: true };
   return { label: "You may only upload up to 5 files.", error: false };
 };
 
-const checkFileTypes = (files) => {
+const checkFileTypes = (files, responseOverride) => {
   if (files) {
     for (let i = 0; i < files.length; i++) {
       const extension = "." + files[i].name.split(".").pop().toLowerCase();
@@ -83,18 +83,22 @@ const validations = {
 // Run Validations
 ////////////////////////////////
 
-const validate = (validation, value) => {
-  const validationResult = validation(value);
+const validate = (validation, value, responseOverride) => {
+  const validationResult = validation(value, responseOverride);
   return [validationResult];
 };
 
-export const handleValidations = (formData) => {
+export const handleValidations = (formData, responseStatus) => {
   const errors = {};
 
   for (const field in formData) {
     let fieldErrors = [];
     standardValidations.forEach((validation) => {
-      fieldErrors = fieldErrors.concat(validate(validation, formData[field]));
+      const response = responseMapping[responseStatus];
+      const override = response && response.type === field;
+      fieldErrors = fieldErrors.concat(
+        validate(validation, formData[field], override),
+      );
     });
     if (validations[field]) {
       validations[field].forEach((validation) => {

@@ -25,6 +25,7 @@ const Quote = () => {
     artFile: [],
     description: [],
   });
+  const [responseStatus, setResponseStatus] = useState(0);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -35,9 +36,9 @@ const Quote = () => {
   };
 
   useEffect(() => {
-    const formValidations = handleValidations(formData);
+    const formValidations = handleValidations(formData, responseStatus);
     setValidations(formValidations);
-  }, [formData]);
+  }, [formData, responseStatus]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +53,7 @@ const Quote = () => {
       // Handle form submission logic here
       const eventFormData = new FormData(e.target);
       const quoteSubmit = await handleQuoteSubmit(eventFormData);
-      console.log(quoteSubmit);
+      setResponseStatus(quoteSubmit);
     } else {
       setShowViolations(true);
     }
