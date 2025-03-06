@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InfoPage from "../InfoPage";
 import { colorPalette } from "../../themes";
 import { handleValidations } from "../../helpers/validations";
@@ -17,6 +17,14 @@ const Quote = () => {
     description: "",
   });
   const [showViolations, setShowViolations] = useState(false);
+  const [validations, setValidations] = useState({
+    name: [],
+    email: [],
+    pieces: [],
+    garments: [],
+    artFile: [],
+    description: [],
+  });
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -26,9 +34,12 @@ const Quote = () => {
     });
   };
 
-  const validations = handleValidations(formData);
+  useEffect(() => {
+    const formValidations = handleValidations(formData);
+    setValidations(formValidations);
+  }, [formData]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let totalViolations = [];
     Object.values(validations).forEach((value) => {
@@ -40,7 +51,8 @@ const Quote = () => {
     if (!totalViolations.length) {
       // Handle form submission logic here
       const eventFormData = new FormData(e.target);
-      handleQuoteSubmit(eventFormData);
+      const quoteSubmit = await handleQuoteSubmit(eventFormData);
+      console.log(quoteSubmit);
     } else {
       setShowViolations(true);
     }
@@ -79,7 +91,7 @@ const Quote = () => {
             flex-direction: column;
           }
         `}
-        enctype="multipart/form-data"
+        encType="multipart/form-data"
       >
         <div
           className="quote-field-container"

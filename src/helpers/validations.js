@@ -85,10 +85,7 @@ const validations = {
 
 const validate = (validation, value) => {
   const validationResult = validation(value);
-  if (validationResult) {
-    return [validationResult];
-  }
-  return [];
+  return [validationResult];
 };
 
 export const handleValidations = (formData) => {
