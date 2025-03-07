@@ -29,6 +29,11 @@ const checkOrderMinimum = (value, responseOverride) => {
 };
 
 const checkFileSize = (files, responseOverride) => {
+  const errorResponse = {
+    label: "Total file size must be less than 25MB.",
+    error: true,
+  };
+  if (responseOverride) return errorResponse;
   if (files) {
     let sumSize = 0;
     for (let i = 0; i < files.length; i++) {
@@ -36,7 +41,7 @@ const checkFileSize = (files, responseOverride) => {
       sumSize += fileSize;
     }
     if (sumSize >= 25 * 1024 * 1024) {
-      return { label: "Total file size must be less than 25MB.", error: true };
+      return errorResponse;
     }
   }
   return { label: "Total file size must be less than 25MB.", error: false };
