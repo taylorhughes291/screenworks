@@ -26,4 +26,9 @@ export const responseMapping = {
     type: "artFile",
     validationName: "checkFileSize",
   },
+  422: {
+    title: "Too Many Files",
+    type: "artFile",
+    validationName: "checkFilesCount",
+  },
 };

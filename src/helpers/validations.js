@@ -5,32 +5,36 @@ import { acceptedFileTypes, responseMapping } from "./constants";
 ////////////////////////////////
 
 const requiredValidationFilled = (value, responseOverride) => {
-  if (responseOverride || !value) return { label: "Required", error: true };
-  return { label: "Required", error: false };
+  const errorText = "Required";
+  if (responseOverride || !value) return { label: errorText, error: true };
+  return { label: errorText, error: false };
 };
 
 const checkValidEmail = (value, responseOverride) => {
+  const errorText = "Valid email required.";
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (emailPattern.test(value)) {
-    return { label: "Valid email required.", error: false };
+    return { label: errorText, error: false };
   }
-  return { label: "Please enter a valid email.", error: true };
+  return { label: errorText, error: true };
 };
 
 const checkOrderMinimum = (value, responseOverride) => {
+  const errorText = "All orders must have 24 pieces at minimum.";
   const intValue = parseInt(value, 10);
   if (intValue >= 24) {
     return {
-      label: "All orders must have 24 pieces at minimum.",
+      label: errorText,
       error: false,
     };
   }
-  return { label: "All orders must have 24 pieces at minimum.", error: true };
+  return { label: errorText, error: true };
 };
 
 const checkFileSize = (files, responseOverride) => {
+  const errorText = "Total file size must be less than 25MB.";
   const errorResponse = {
-    label: "Total file size must be less than 25MB.",
+    label: errorText,
     error: true,
   };
   if (responseOverride) return errorResponse;
@@ -44,30 +48,36 @@ const checkFileSize = (files, responseOverride) => {
       return errorResponse;
     }
   }
-  return { label: "Total file size must be less than 25MB.", error: false };
+  return { label: errorText, error: false };
 };
 
 const checkFilesCount = (files, responseOverride) => {
-  if (files && files.length > 5)
-    return { label: "You may only upload up to 5 files.", error: true };
-  return { label: "You may only upload up to 5 files.", error: false };
+  const errorText = "You may only upload up to 5 files.";
+  const errorResponse = {
+    label: errorText,
+    error: true,
+  };
+  if (responseOverride) return errorResponse;
+  if (files && files.length > 5) return errorResponse;
+  return { label: errorText, error: false };
 };
 
 const checkFileTypes = (files, responseOverride) => {
-  const errorReponse = {
-    label: "You may only attach PDF or Image files.",
+  const errorText = "We accept PDF or any image files.";
+  const errorResponse = {
+    label: errorText,
     error: true,
   };
-  if (responseOverride) return errorReponse;
+  if (responseOverride) return errorResponse;
   if (files) {
     for (let i = 0; i < files.length; i++) {
       const extension = "." + files[i].name.split(".").pop().toLowerCase();
       if (!acceptedFileTypes.includes(extension)) {
-        return errorReponse;
+        return errorResponse;
       }
     }
   }
-  return { label: "We accept PDF or any image files.", error: false };
+  return { label: errorText, error: false };
 };
 
 ////////////////////////////////
