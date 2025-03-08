@@ -88,21 +88,38 @@ const Quote = () => {
     });
   };
 
+  const renderLoadingChildren = (
+    <div
+      css={css`
+        text-align: center;
+      `}
+    >
+      <p>Submitting...</p>
+      <p>Please don't navigate away just yet...</p>
+    </div>
+  );
+
   return (
-    <LoadingWrapper isLoaded={!requestPending}>
-      <InfoPage title="Request a Quote">
-        <form
-          onSubmit={handleSubmit}
-          css={css`
+    <InfoPage title="Request a Quote">
+      <form
+        onSubmit={handleSubmit}
+        css={css`
+          display: flex;
+          flex-direction: column;
+          padding: 0 20px 20px;
+          div.quote-field-container {
             display: flex;
             flex-direction: column;
-            padding: 0 20px 20px;
-            div.quote-field-container {
-              display: flex;
-              flex-direction: column;
-            }
+          }
+        `}
+        encType="multipart/form-data"
+      >
+        <LoadingWrapper
+          isLoaded={!requestPending}
+          loadingChildren={renderLoadingChildren}
+          overrideStyles={css`
+            margin-top: 0;
           `}
-          encType="multipart/form-data"
         >
           <div
             className="quote-field-container"
@@ -305,9 +322,9 @@ const Quote = () => {
           >
             Submit
           </button>
-        </form>
-      </InfoPage>
-    </LoadingWrapper>
+        </LoadingWrapper>
+      </form>
+    </InfoPage>
   );
 };
 
