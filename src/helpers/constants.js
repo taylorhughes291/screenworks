@@ -32,3 +32,12 @@ export const responseMapping = {
     validationName: "checkFilesCount",
   },
 };
+
+export const defaultQuoteFormData = {
+  name: "",
+  email: "",
+  pieces: "",
+  garments: "",
+  artFile: null,
+  description: "",
+};

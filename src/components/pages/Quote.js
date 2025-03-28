@@ -3,20 +3,17 @@ import { css } from "@emotion/react";
 import { useState, useEffect } from "react";
 import InfoPage from "../InfoPage";
 import LoadingWrapper from "../LoadingWrapper";
+import CtaButton from "../CtaButton";
 import { colorPalette } from "../../themes";
 import { handleValidations } from "../../helpers/validations";
-import { acceptedFileTypes } from "../../helpers/constants";
+import {
+  acceptedFileTypes,
+  defaultQuoteFormData,
+} from "../../helpers/constants";
 import { handleQuoteSubmit } from "../../helpers/requests";
 
 const Quote = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    pieces: "",
-    garments: "",
-    artFile: null,
-    description: "",
-  });
+  const [formData, setFormData] = useState(defaultQuoteFormData);
   const [showViolations, setShowViolations] = useState(false);
   const [validations, setValidations] = useState({
     name: [],
@@ -67,6 +64,51 @@ const Quote = () => {
       setShowViolations(true);
     }
   };
+
+  const handleAnotherQuote = () => {
+    setFormData(defaultQuoteFormData);
+    setShowViolations(false);
+  };
+
+  if (responseStatus === 200) {
+    return (
+      <InfoPage title="Quote Request Sent!">
+        <p
+          css={css`
+            text-align: center;
+            margin-bottom: 0;
+          `}
+        >
+          Thank you for your request. We have successfully received your quote
+          request and will get back to you shortly.
+        </p>
+        <p
+          css={css`
+            margin-bottom: 40px;
+          `}
+        >
+          Need to build another order?&nbsp;
+          <span
+            css={css`
+              color: #007bff; /* A good link color */
+              cursor: pointer;
+              text-decoration: underline;
+            `}
+            onClick={handleAnotherQuote}
+          >
+            Start another quote
+          </span>
+        </p>
+        <CtaButton
+          displayText="Back to the Homepage"
+          href="/"
+          overrideStyles={css`
+            margin-bottom: 30px;
+          `}
+        />
+      </InfoPage>
+    );
+  }
 
   const inputFileTypes = acceptedFileTypes.join(",");
 
