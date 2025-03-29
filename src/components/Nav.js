@@ -18,14 +18,21 @@ const Nav = ({ overrideStyles = css``, children, onSelect }) => {
       <ul
         css={css`
           list-style-type: none;
+          padding: 0;
           li#${location} {
             font-weight: 800;
           }
           a {
             text-decoration: none;
             color: inherit;
+            white-space: nowrap; /* Prevent text wrapping */
           }
           @media (${breakpoints.desktop}) {
+            li a {
+              font-size: 20px;
+            }
+          }
+          @media (${breakpoints.desktopLarge}) {
             li a {
               font-size: 22px;
             }
