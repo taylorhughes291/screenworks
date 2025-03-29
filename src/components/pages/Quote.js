@@ -3,7 +3,6 @@ import { css } from "@emotion/react";
 import { useState, useEffect } from "react";
 import InfoPage from "../InfoPage";
 import LoadingWrapper from "../LoadingWrapper";
-import CtaButton from "../CtaButton";
 import { colorPalette, breakpoints } from "../../themes";
 import { handleValidations } from "../../helpers/validations";
 import {
@@ -12,6 +11,7 @@ import {
 } from "../../helpers/constants";
 import { handleQuoteSubmit } from "../../helpers/requests";
 import EmailLink from "../EmailLink";
+import QuoteSuccess from "../QuoteSuccess";
 
 const Quote = () => {
   const [formData, setFormData] = useState(defaultQuoteFormData);
@@ -73,43 +73,7 @@ const Quote = () => {
   };
 
   if (responseStatus === 200) {
-    return (
-      <InfoPage title="Quote Request Sent!">
-        <p
-          css={css`
-            text-align: center;
-            margin-bottom: 0;
-          `}
-        >
-          Thank you for your request. We have successfully received your quote
-          request and will get back to you shortly.
-        </p>
-        <p
-          css={css`
-            margin-bottom: 40px;
-          `}
-        >
-          Need to build another order?&nbsp;
-          <span
-            css={css`
-              color: #007bff; /* A good link color */
-              cursor: pointer;
-              text-decoration: underline;
-            `}
-            onClick={handleAnotherQuote}
-          >
-            Start another quote
-          </span>
-        </p>
-        <CtaButton
-          displayText="Back to the Homepage"
-          href="/"
-          overrideStyles={css`
-            margin-bottom: 30px;
-          `}
-        />
-      </InfoPage>
-    );
+    return <QuoteSuccess onClick={handleAnotherQuote} />;
   }
 
   const inputFileTypes = acceptedFileTypes.join(",");
@@ -152,22 +116,6 @@ const Quote = () => {
         }
       `}
     >
-      <div
-        css={css`
-          margin-bottom: 20px;
-          max-width: 500px;
-          h3 {
-            margin: 0;
-            text-align: center;
-            font-size: 14px;
-          }
-        `}
-      >
-        <h3>
-          You can submit up to three orders in a 24 hour period. If your order
-          is more complex, go ahead and email us at {<EmailLink />}.
-        </h3>
-      </div>
       <form
         onSubmit={handleSubmit}
         css={css`
@@ -196,9 +144,28 @@ const Quote = () => {
           `}
         >
           <div
+            css={css`
+              margin-bottom: 20px;
+              max-width: 500px;
+              margin: 0 auto 20px;
+            `}
+          >
+            <h3
+              css={css`
+                margin: 0;
+                text-align: center;
+                font-size: 14px;
+              `}
+            >
+              You can submit up to three orders in a 24 hour period. If your
+              order is more complex, go ahead and email us at {<EmailLink />}.
+            </h3>
+          </div>
+          <div
             className="quote-field-container"
             css={css`
               margin-bottom: 15px;
+              flex: 1 0 auto;
             `}
           >
             <label
