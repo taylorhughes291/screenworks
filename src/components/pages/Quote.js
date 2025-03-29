@@ -45,6 +45,7 @@ const Quote = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top
     let totalViolations = [];
     Object.values(validations).forEach((value) => {
       const errors = value.filter((item) => {
@@ -356,6 +357,7 @@ const Quote = () => {
               border: 1px solid ${colorPalette.color5};
               border-radius: 4px;
               font-size: 16px;
+              font-weight: 600;
               cursor: pointer;
               &:hover {
                 background-color: #0056b3;
