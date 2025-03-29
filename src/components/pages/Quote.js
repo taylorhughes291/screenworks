@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import InfoPage from "../InfoPage";
 import LoadingWrapper from "../LoadingWrapper";
 import CtaButton from "../CtaButton";
-import { colorPalette } from "../../themes";
+import { colorPalette, breakpoints } from "../../themes";
 import { handleValidations } from "../../helpers/validations";
 import {
   acceptedFileTypes,
@@ -120,7 +120,7 @@ const Quote = () => {
         <p
           key={index}
           css={css`
-            margin: 0 0 5px;
+            margin: 0 0 5px 3px;
             font-size: 13px;
             ${styleViolation && `color: ${colorPalette.color1};`}
           `}
@@ -143,13 +143,24 @@ const Quote = () => {
   );
 
   return (
-    <InfoPage title="Request a Quote">
+    <InfoPage
+      title="Request a Quote"
+      overrideStyles={css`
+        .info-page-content {
+          width: 100%;
+        }
+      `}
+    >
       <form
         onSubmit={handleSubmit}
         css={css`
           display: flex;
           flex-direction: column;
           padding: 0 20px 20px;
+          width: 100%;
+          @media (${breakpoints.tablet}) {
+            width: 600px;
+          }
           div.quote-field-container {
             display: flex;
             flex-direction: column;
