@@ -10,11 +10,23 @@ const setLocalStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const incrementQs = () => {
-  const currentValue = getLocalStorage("qs");
-  if (currentValue !== null) {
+export const handleSubmissionCount = () => {
+  const currentValue = getLocalStorage("qs") || 0;
+  const localStorageDate = getLocalStorage("date");
+  const now = new Date();
+
+  if (
+    localStorageDate &&
+    now - new Date(localStorageDate) < 24 * 60 * 60 * 1000
+  ) {
+    if (currentValue >= 3) {
+      return false;
+    }
     setLocalStorage("qs", currentValue + 1);
-  } else {
-    setLocalStorage("qs", 0);
+    return true;
   }
+
+  setLocalStorage("qs", 1);
+  setLocalStorage("date", now.toISOString());
+  return true;
 };

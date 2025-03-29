@@ -12,6 +12,7 @@ import {
 import { handleQuoteSubmit } from "../../helpers/requests";
 import EmailLink from "../EmailLink";
 import QuoteSuccess from "../QuoteSuccess";
+import { handleSubmissionCount } from "../../helpers/localStorage";
 
 const Quote = () => {
   const [formData, setFormData] = useState(defaultQuoteFormData);
@@ -26,6 +27,7 @@ const Quote = () => {
   });
   const [responseStatus, setResponseStatus] = useState(-1);
   const [requestPending, setRequestPending] = useState(false);
+  const [submissionsExceeded, setSubmissionsExceeded] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -47,6 +49,8 @@ const Quote = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top
+    const submissionAllowed = handleSubmissionCount();
+    if (!submissionAllowed) setSubmissionsExceeded(true);
     let totalViolations = [];
     Object.values(validations).forEach((value) => {
       const errors = value.filter((item) => {
@@ -54,7 +58,7 @@ const Quote = () => {
       });
       totalViolations = totalViolations.concat(errors);
     });
-    if (!totalViolations.length) {
+    if (!totalViolations.length && submissionAllowed) {
       // Handle form submission logic here
       setRequestPending(true);
       const eventFormData = new FormData(e.target);
