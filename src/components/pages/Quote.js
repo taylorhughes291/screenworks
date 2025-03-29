@@ -11,6 +11,7 @@ import {
   defaultQuoteFormData,
 } from "../../helpers/constants";
 import { handleQuoteSubmit } from "../../helpers/requests";
+import EmailLink from "../EmailLink";
 
 const Quote = () => {
   const [formData, setFormData] = useState(defaultQuoteFormData);
@@ -151,6 +152,22 @@ const Quote = () => {
         }
       `}
     >
+      <div
+        css={css`
+          margin-bottom: 20px;
+          max-width: 500px;
+          h3 {
+            margin: 0;
+            text-align: center;
+            font-size: 14px;
+          }
+        `}
+      >
+        <h3>
+          You can submit up to three orders in a 24 hour period. If your order
+          is more complex, go ahead and email us at {<EmailLink />}.
+        </h3>
+      </div>
       <form
         onSubmit={handleSubmit}
         css={css`
@@ -160,6 +177,9 @@ const Quote = () => {
           width: 100%;
           @media (${breakpoints.tablet}) {
             width: 600px;
+          }
+          @media (${breakpoints.desktop}) {
+            width: 750px;
           }
           div.quote-field-container {
             display: flex;
