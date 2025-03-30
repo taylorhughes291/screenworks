@@ -8,26 +8,23 @@ import { handleValidations } from "../../helpers/validations";
 import {
   acceptedFileTypes,
   defaultQuoteFormData,
+  defaultViolations,
 } from "../../helpers/constants";
 import { handleQuoteSubmit } from "../../helpers/requests";
 import EmailLink from "../EmailLink";
 import QuoteSuccess from "../QuoteSuccess";
 import { handleSubmissionCount } from "../../helpers/localStorage";
+import SubmissionsExceeded from "../SubmissionsExceeded";
 
 const Quote = () => {
   const [formData, setFormData] = useState(defaultQuoteFormData);
   const [showViolations, setShowViolations] = useState(false);
-  const [validations, setValidations] = useState({
-    name: [],
-    email: [],
-    pieces: [],
-    garments: [],
-    artFile: [],
-    description: [],
-  });
+  const [validations, setValidations] = useState(defaultViolations);
   const [responseStatus, setResponseStatus] = useState(-1);
   const [requestPending, setRequestPending] = useState(false);
-  const [submissionsExceeded, setSubmissionsExceeded] = useState(false);
+  const [submissionsAllowed, setSubmissionsAllowed] = useState(
+    handleSubmissionCount(true),
+  );
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -44,13 +41,12 @@ const Quote = () => {
 
   useEffect(() => {
     setResponseStatus(-1);
+    setSubmissionsAllowed(handleSubmissionCount(true));
   }, [formData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top
-    const submissionAllowed = handleSubmissionCount();
-    if (!submissionAllowed) setSubmissionsExceeded(true);
     let totalViolations = [];
     Object.values(validations).forEach((value) => {
       const errors = value.filter((item) => {
@@ -58,11 +54,12 @@ const Quote = () => {
       });
       totalViolations = totalViolations.concat(errors);
     });
-    if (!totalViolations.length && submissionAllowed) {
+    if (!totalViolations.length) {
       // Handle form submission logic here
       setRequestPending(true);
       const eventFormData = new FormData(e.target);
       await handleQuoteSubmit(eventFormData).then((res) => {
+        handleSubmissionCount();
         setRequestPending(false);
         setResponseStatus(res);
       });
@@ -78,6 +75,10 @@ const Quote = () => {
 
   if (responseStatus === 200) {
     return <QuoteSuccess onClick={handleAnotherQuote} />;
+  }
+
+  if (!submissionsAllowed) {
+    return <SubmissionsExceeded />;
   }
 
   const inputFileTypes = acceptedFileTypes.join(",");
@@ -161,8 +162,10 @@ const Quote = () => {
                 font-size: 14px;
               `}
             >
-              You can submit up to three orders in a 24 hour period. If your
-              order is more complex, go ahead and email us at {<EmailLink />}.
+              You can submit up to three quote requests in a 24 hour period. We
+              will get back to you with your quote within 3 business days. If
+              your order is more complex, go ahead and email us at{" "}
+              {<EmailLink />}.
             </h3>
           </div>
           <div

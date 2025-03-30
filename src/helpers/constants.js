@@ -41,3 +41,12 @@ export const defaultQuoteFormData = {
   artFile: null,
   description: "",
 };
+
+export const defaultViolations = {
+  name: [],
+  email: [],
+  pieces: [],
+  garments: [],
+  artFile: [],
+  description: [],
+};

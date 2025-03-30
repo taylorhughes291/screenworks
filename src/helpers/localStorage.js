@@ -10,7 +10,7 @@ const setLocalStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const handleSubmissionCount = () => {
+export const handleSubmissionCount = (readOnly = false) => {
   const currentValue = getLocalStorage("qs") || 0;
   const localStorageDate = getLocalStorage("date");
   const now = new Date();
@@ -22,11 +22,14 @@ export const handleSubmissionCount = () => {
     if (currentValue >= 3) {
       return false;
     }
-    setLocalStorage("qs", currentValue + 1);
+    if (!readOnly) {
+      setLocalStorage("qs", currentValue + 1);
+    }
     return true;
   }
-
-  setLocalStorage("qs", 1);
-  setLocalStorage("date", now.toISOString());
+  if (!readOnly) {
+    setLocalStorage("qs", 1);
+    setLocalStorage("date", now.toISOString());
+  }
   return true;
 };
