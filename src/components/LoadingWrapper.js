@@ -1,18 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import React from "react";
 import loadingArrow from "../assets/loading-arrow.svg";
 
-const LoadingWrapper = ({ isLoaded, children }) => {
+const LoadingWrapper = ({
+  isLoaded,
+  loadingChildren = <></>,
+  overrideStyles = css``,
+  children,
+}) => {
   if (!isLoaded) {
     return (
       <div
         className="loading-icon"
         css={css`
-          width: 100%;
           display: flex;
+          flex-direction: column;
           justify-content: center;
+          align-items: center;
           margin-top: 40px;
+          ${overrideStyles}
           @keyframes spin {
             0% {
               transform: rotate(0deg);
@@ -23,11 +29,13 @@ const LoadingWrapper = ({ isLoaded, children }) => {
           }
 
           img {
+            width: 150px;
             animation: spin 1.5s linear infinite;
           }
         `}
       >
         <img src={loadingArrow} alt="loading arrow" />
+        {loadingChildren}
       </div>
     );
   }

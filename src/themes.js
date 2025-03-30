@@ -25,6 +25,7 @@ export const breakpoints = {
   mobileMedium: "min-width: 340px",
   tablet: "min-width: 768px",
   desktop: "min-width: 1024px",
+  desktopLarge: "min-width: 1150px",
 };
 
 export const commonStyles = {

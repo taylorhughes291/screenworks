@@ -8,7 +8,7 @@ const InfoPage = ({
   imgData,
   description,
   children,
-  isLoaded,
+  isLoaded = true,
   overrideStyles,
 }) => {
   return (

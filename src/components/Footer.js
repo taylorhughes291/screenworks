@@ -3,16 +3,12 @@ import { css } from "@emotion/react";
 import { colorPalette, breakpoints } from "../themes";
 import screenworksLogo from "../assets/screenworks-logo.svg";
 import { useFetchDatoCms } from "../helpers/customHooks";
+import EmailLink from "./EmailLink";
 
 const Footer = () => {
   const query = `query MyQuery {
     screenworksSite {
       phoneNumbers {
-        name
-        value
-        primary
-      }
-      emails {
         name
         value
         primary
@@ -25,7 +21,6 @@ const Footer = () => {
   const primaryPhone = pageData?.phoneNumbers.find(
     (item) => item.primary,
   )?.value;
-  const primaryEmail = pageData?.emails.find((item) => item.primary)?.value;
 
   return (
     <div
@@ -77,7 +72,7 @@ const Footer = () => {
         dangerouslySetInnerHTML={{ __html: pageData?.address }}
       ></div>
       <p>{primaryPhone}</p>
-      <a href={`mailto:${primaryEmail}`}>{primaryEmail}</a>
+      <EmailLink />
     </div>
   );
 };

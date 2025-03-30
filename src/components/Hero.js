@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import DownArrow from "./DownArrow";
+import CtaButton from "./CtaButton";
 import { colorPalette, breakpoints } from "../themes";
 
 const Hero = ({ overrideStyles, pageData }) => {
@@ -48,28 +49,10 @@ const Hero = ({ overrideStyles, pageData }) => {
         >
           {pageData?.homepageTitle}
         </h2>
-        <a
-          css={css`
-            padding: 10px 30px;
-            border-radius: 10px;
-            border: 1px solid ${colorPalette.color5};
-            font-size: 16px;
-            font-weight: 600;
-            color: ${colorPalette.color5};
-            background-color: ${colorPalette.color4};
-            text-decoration: none;
-            @media (${breakpoints.tablet}) {
-              padding: 15px 40px;
-              font-size: 20px;
-              font-weight: 700;
-              border: 2px solid ${colorPalette.color5};
-            }
-          `}
+        <CtaButton
           href={pageData?.callToActionLocation}
-          role="button"
-        >
-          {pageData?.callToActionTitle}
-        </a>
+          displayText={pageData?.callToActionTitle}
+        />
       </div>
       <DownArrow
         overrideStyles={css`

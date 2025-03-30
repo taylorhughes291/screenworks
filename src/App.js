@@ -8,6 +8,7 @@ import Contact from "./components/pages/Contact";
 import Story from "./components/pages/Story";
 import Photos from "./components/pages/Photos";
 import Faq from "./components/pages/Faq";
+import Quote from "./components/pages/Quote";
 import Footer from "./components/Footer";
 import ErrorPage from "./components/pages/ErrorPage";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
@@ -75,6 +76,10 @@ function App() {
         {
           path: "/contact",
           element: <Contact />,
+        },
+        {
+          path: "/quote",
+          element: <Quote />,
         },
         {
           path: "/story",

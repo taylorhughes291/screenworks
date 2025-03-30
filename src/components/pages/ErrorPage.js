@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { colorPalette } from "../../themes";
 import Header from "../Header";
 import Footer from "../Footer";
+import InfoPage from "../InfoPage";
 
 const ErrorPage = () => {
   return (
@@ -14,14 +15,7 @@ const ErrorPage = () => {
         `}
       >
         <Header />
-        <div
-          css={css`
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          `}
-        >
+        <InfoPage>
           <h1
             css={css`
               margin: 0 0 10px;
@@ -38,13 +32,13 @@ const ErrorPage = () => {
           </p>
           <p
             css={css`
-              margin: 0;
+              margin: 0 0 30px;
             `}
           >
             Make sure you check your URL, or try clicking on one of the buttons
             above.
           </p>
-        </div>
+        </InfoPage>
       </div>
       <Footer />
     </div>
