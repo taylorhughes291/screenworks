@@ -6,7 +6,6 @@ import LoadingWrapper from "../LoadingWrapper";
 import { colorPalette, breakpoints } from "../../themes";
 import { handleValidations } from "../../helpers/validations";
 import {
-  acceptedFileTypes,
   defaultQuoteFormData,
   defaultViolations,
 } from "../../helpers/constants";
@@ -80,8 +79,6 @@ const Quote = () => {
   if (!submissionsAllowed) {
     return <SubmissionsExceeded />;
   }
-
-  const inputFileTypes = acceptedFileTypes.join(",");
 
   const renderViolations = (inputName) => {
     return validations[inputName].map((item, index) => {
@@ -321,7 +318,7 @@ const Quote = () => {
                 border-radius: 4px;
                 font-size: 16px;
               `}
-              accept={inputFileTypes}
+              accept="image/*"
             />
           </div>
           <div

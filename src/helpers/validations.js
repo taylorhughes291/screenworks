@@ -1,4 +1,4 @@
-import { acceptedFileTypes, responseMapping } from "./constants";
+import { responseMapping } from "./constants";
 
 ////////////////////////////////
 // Individual Validations
@@ -63,7 +63,7 @@ const checkFilesCount = (files, responseOverride) => {
 };
 
 const checkFileTypes = (files, responseOverride) => {
-  const errorText = "We accept PDF or any image files.";
+  const errorText = "We accept only image files.";
   const errorResponse = {
     label: errorText,
     error: true,
@@ -71,8 +71,8 @@ const checkFileTypes = (files, responseOverride) => {
   if (responseOverride) return errorResponse;
   if (files) {
     for (let i = 0; i < files.length; i++) {
-      const extension = "." + files[i].name.split(".").pop().toLowerCase();
-      if (!acceptedFileTypes.includes(extension)) {
+      const fileType = files[i].type.toLowerCase();
+      if (!fileType.startsWith("image/")) {
         return errorResponse;
       }
     }
