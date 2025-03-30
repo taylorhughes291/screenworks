@@ -11,25 +11,29 @@ const setLocalStorage = (key, value) => {
 };
 
 export const handleSubmissionCount = (readOnly = false) => {
-  const currentValue = getLocalStorage("qs") || 0;
-  const localStorageDate = getLocalStorage("date");
-  const now = new Date();
+  try {
+    const currentValue = getLocalStorage("qs") || 0;
+    const localStorageDate = getLocalStorage("date");
+    const now = new Date();
 
-  if (
-    localStorageDate &&
-    now - new Date(localStorageDate) < 24 * 60 * 60 * 1000
-  ) {
-    if (currentValue >= 3) {
-      return false;
+    if (
+      localStorageDate &&
+      now - new Date(localStorageDate) < 24 * 60 * 60 * 1000
+    ) {
+      if (currentValue >= 3) {
+        return false;
+      }
+      if (!readOnly) {
+        setLocalStorage("qs", currentValue + 1);
+      }
+      return true;
     }
     if (!readOnly) {
-      setLocalStorage("qs", currentValue + 1);
+      setLocalStorage("qs", 1);
+      setLocalStorage("date", now.toISOString());
     }
     return true;
+  } catch {
+    return false;
   }
-  if (!readOnly) {
-    setLocalStorage("qs", 1);
-    setLocalStorage("date", now.toISOString());
-  }
-  return true;
 };
