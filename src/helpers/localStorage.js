@@ -24,7 +24,7 @@ export const handleSubmissionCount = (readOnly = false, res = 0) => {
       if (throwawayTries >= 30) {
         return false;
       }
-      if (currentValue >= 3) {
+      if (currentValue >= 5) {
         return false;
       }
       if (!readOnly) {
