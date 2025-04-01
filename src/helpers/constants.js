@@ -24,6 +24,7 @@ export const responseMapping = {
 export const defaultQuoteFormData = {
   name: "",
   email: "",
+  phone: "",
   pieces: "",
   garments: "",
   garmentColor: "",
@@ -34,6 +35,7 @@ export const defaultQuoteFormData = {
 export const defaultViolations = {
   name: [],
   email: [],
+  phone: [],
   pieces: [],
   garments: [],
   garmentColor: [],

@@ -63,7 +63,7 @@ const checkFilesCount = (files, responseOverride) => {
 };
 
 const checkFileTypes = (files, responseOverride) => {
-  const errorText = "Only image files accepted";
+  const errorText = "Image files only";
   const errorResponse = {
     label: errorText,
     error: true,
@@ -92,30 +92,55 @@ const descriptionText = () => {
   };
 };
 
+const artFileText = () => {
+  return {
+    label: "If you have your art files available, please attach them here",
+    error: false,
+  };
+};
+
 ////////////////////////////////
 // Validation Organization
 ////////////////////////////////
 
-const standardValidations = [
+const standardValidations = [];
+const nameValidations = [
   { name: "requiredValidationFilled", validation: requiredValidationFilled },
 ];
 const emailValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
   { name: "checkValidEmail", validation: checkValidEmail },
 ];
+const phoneValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
+];
 const piecesValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
   { name: "checkOrderMinimum", validation: checkOrderMinimum },
 ];
+const garmentsValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
+];
+const garmentColorValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
+];
 const artFileValidations = [
+  { name: "artFileText", validation: artFileText },
   { name: "checkFileSize", validation: checkFileSize },
   { name: "checkFilesCount", validation: checkFilesCount },
   { name: "checkFileTypes", validation: checkFileTypes },
 ];
 const descriptionValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
   { name: "descriptionText", validation: descriptionText },
 ];
 
 const validations = {
   standard: standardValidations,
+  name: nameValidations,
+  phone: phoneValidations,
+  garments: garmentsValidations,
+  garmentColor: garmentColorValidations,
   email: emailValidations,
   pieces: piecesValidations,
   artFile: artFileValidations,

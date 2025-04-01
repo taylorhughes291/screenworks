@@ -230,6 +230,27 @@ const Quote = () => {
             className="quote-field-container"
             css={quoteFieldContainerStyles}
           >
+            <label css={labelStyles}>Phone Number:</label>
+            {renderViolations("phone")}
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="(310) 555-1234"
+              css={css`
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 16px;
+              `}
+              minLength={10}
+            />
+          </div>
+          <div
+            className="quote-field-container"
+            css={quoteFieldContainerStyles}
+          >
             <label css={labelStyles}>How many pieces:</label>
             {renderViolations("pieces")}
             <input
