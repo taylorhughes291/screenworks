@@ -8,7 +8,7 @@ const EmailLink = () => {
             value
             primary
         }
-        }
+      }
     }`;
   const cmsData = useFetchDatoCms(query);
   const pageData = cmsData?.screenworksSite;
