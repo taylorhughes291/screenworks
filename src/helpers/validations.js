@@ -87,7 +87,7 @@ const checkFileTypes = (files, responseOverride) => {
 const descriptionText = () => {
   return {
     label:
-      "Please include any details including art placement on garment, size breakdown information if you have it, or anything else you think we should know. If it starts feeling too complex, call us or send us an email. We would be happy to help!",
+      "Please include any details including art placement on garment, how many ink colors per art placement, size breakdown information if you have it, or anything else you think we should know. If it starts feeling too complex, call us or send us an email. We would be happy to help!",
     error: false,
   };
 };
