@@ -72,9 +72,10 @@ const Quote = () => {
       setRequestPending(true);
       const eventFormData = new FormData(e.target);
       await handleQuoteSubmit(eventFormData).then((res) => {
-        handleSubmissionCount();
+        handleSubmissionCount(false, res);
         setRequestPending(false);
         setResponseStatus(res);
+        setShowViolations(true);
       });
     } else {
       setShowViolations(true);

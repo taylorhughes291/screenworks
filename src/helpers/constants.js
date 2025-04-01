@@ -1,9 +1,4 @@
 export const responseMapping = {
-  400: {
-    title: "File Missing",
-    type: "artFile",
-    validationName: "requiredValidationFilled",
-  },
   415: {
     title: "Invalid File Type",
     type: "artFile",
