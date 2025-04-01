@@ -87,6 +87,10 @@ const Quote = () => {
     setShowViolations(false);
   };
 
+  if (responseStatus === 400) {
+    window.location.href = "/error";
+  }
+
   if (responseStatus === 200) {
     return <QuoteSuccess onClick={handleAnotherQuote} />;
   }
