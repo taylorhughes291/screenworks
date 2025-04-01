@@ -81,21 +81,31 @@ const Quote = () => {
   }
 
   const renderViolations = (inputName) => {
-    return validations[inputName].map((item, index) => {
+    const rules = validations[inputName].map((item, index) => {
       const styleViolation = item.error && showViolations;
+      const isLast = index === validations[inputName].length - 1;
       return (
-        <p
+        <span
           key={index}
           css={css`
-            margin: 0 0 5px 3px;
-            font-size: 13px;
             ${styleViolation && `color: ${colorPalette.color1};`}
           `}
         >
           {item.label}
-        </p>
+          {isLast ? "." : ", "}
+        </span>
       );
     });
+    return (
+      <p
+        css={css`
+          margin: 0 0 5px 3px;
+          font-size: 13px;
+        `}
+      >
+        {rules}
+      </p>
+    );
   };
 
   const renderLoadingChildren = (
@@ -285,10 +295,60 @@ const Quote = () => {
               `}
             >
               <option value="">Select a garment</option>
-              <option value="tshirt">T-Shirt</option>
-              <option value="hoodie">Hoodie</option>
-              <option value="jacket">Jacket</option>
+              <option value="short-sleeve-tshirt">Short Sleeve T-Shirt</option>
+              <option value="pullover-hooded-sweatshirt">
+                Pullover Hooded Sweatshirt
+              </option>
+              <option value="zip-hooded-sweatshirt">
+                Zip Hooded Sweatshirt
+              </option>
+              <option value="tank-top">Tank Top</option>
+              <option value="long-sleeve-tshirt">Long Sleeve T-Shirt</option>
+              <option value="ladies-short-sleeve-tshirt">
+                Ladies Short Sleeve T-Shirt
+              </option>
+              <option value="ladies-vneck-tshirt">Ladies V-Neck T-Shirt</option>
+              <option value="youth-short-sleeve-tshirt">
+                Youth Short Sleeve T-Shirt
+              </option>
+              <option value="youth-hooded-sweatshirt">
+                Youth Hooded Sweatshirt
+              </option>
+              <option value="youth-zip-hooded-sweatshirt">
+                Youth Zip Hooded Sweatshirt
+              </option>
             </select>
+          </div>
+          <div
+            className="quote-field-container"
+            css={css`
+              margin-bottom: 15px;
+              flex: 1 0 auto;
+            `}
+          >
+            <label
+              css={css`
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: #555;
+              `}
+            >
+              Garment Color:
+            </label>
+            {renderViolations("garmentColor")}
+            <input
+              type="text"
+              name="garmentColor"
+              value={formData.name}
+              onChange={handleChange}
+              css={css`
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 16px;
+              `}
+            />
           </div>
           <div
             className="quote-field-container"

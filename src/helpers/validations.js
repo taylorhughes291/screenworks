@@ -11,7 +11,7 @@ const requiredValidationFilled = (value, responseOverride) => {
 };
 
 const checkValidEmail = (value, responseOverride) => {
-  const errorText = "Valid email required.";
+  const errorText = "Valid email necessary";
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (emailPattern.test(value)) {
     return { label: errorText, error: false };
@@ -20,7 +20,7 @@ const checkValidEmail = (value, responseOverride) => {
 };
 
 const checkOrderMinimum = (value, responseOverride) => {
-  const errorText = "All orders must have 24 pieces at minimum.";
+  const errorText = "All orders must have 24 pieces at minimum";
   const intValue = parseInt(value, 10);
   if (intValue >= 24) {
     return {
@@ -32,7 +32,7 @@ const checkOrderMinimum = (value, responseOverride) => {
 };
 
 const checkFileSize = (files, responseOverride) => {
-  const errorText = "Total file size must be less than 25MB.";
+  const errorText = "Total file size must be less than 25MB";
   const errorResponse = {
     label: errorText,
     error: true,
@@ -52,7 +52,7 @@ const checkFileSize = (files, responseOverride) => {
 };
 
 const checkFilesCount = (files, responseOverride) => {
-  const errorText = "You may only upload up to 5 files.";
+  const errorText = "5 files maximum";
   const errorResponse = {
     label: errorText,
     error: true,
@@ -63,7 +63,7 @@ const checkFilesCount = (files, responseOverride) => {
 };
 
 const checkFileTypes = (files, responseOverride) => {
-  const errorText = "We accept only image files.";
+  const errorText = "Only image files accepted";
   const errorResponse = {
     label: errorText,
     error: true,

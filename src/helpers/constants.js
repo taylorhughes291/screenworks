@@ -26,6 +26,7 @@ export const defaultQuoteFormData = {
   email: "",
   pieces: "",
   garments: "",
+  garmentColor: "",
   artFile: null,
   description: "",
 };
@@ -35,6 +36,7 @@ export const defaultViolations = {
   email: [],
   pieces: [],
   garments: [],
+  garmentColor: [],
   artFile: [],
   description: [],
 };
