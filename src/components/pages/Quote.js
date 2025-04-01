@@ -296,7 +296,7 @@ const Quote = () => {
             <input
               type="text"
               name="garmentColor"
-              value={formData.name}
+              value={formData.garmentColor}
               onChange={handleChange}
               placeholder="White, Black, Red, etc."
               css={css`
