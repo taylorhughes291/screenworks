@@ -81,6 +81,18 @@ const checkFileTypes = (files, responseOverride) => {
 };
 
 ////////////////////////////////
+// Non-Validation Descriptions
+////////////////////////////////
+
+const descriptionText = () => {
+  return {
+    label:
+      "Please include any details including art placement on garment, size breakdown information if you have it, or anything else you think we should know. If it starts feeling too complex, call us or send us an email. We would be happy to help!",
+    error: false,
+  };
+};
+
+////////////////////////////////
 // Validation Organization
 ////////////////////////////////
 
@@ -98,12 +110,16 @@ const artFileValidations = [
   { name: "checkFilesCount", validation: checkFilesCount },
   { name: "checkFileTypes", validation: checkFileTypes },
 ];
+const descriptionValidations = [
+  { name: "descriptionText", validation: descriptionText },
+];
 
 const validations = {
   standard: standardValidations,
   email: emailValidations,
   pieces: piecesValidations,
   artFile: artFileValidations,
+  description: descriptionValidations,
 };
 
 ////////////////////////////////

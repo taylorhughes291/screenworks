@@ -15,6 +15,20 @@ import QuoteSuccess from "../QuoteSuccess";
 import { handleSubmissionCount } from "../../helpers/localStorage";
 import SubmissionsExceeded from "../SubmissionsExceeded";
 
+const labelStyles = css`
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+`;
+
+const quoteFieldContainerStyles = css`
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+`;
+
 const Quote = () => {
   const [formData, setFormData] = useState(defaultQuoteFormData);
   const [showViolations, setShowViolations] = useState(false);
@@ -99,8 +113,10 @@ const Quote = () => {
     return (
       <p
         css={css`
-          margin: 0 0 5px 3px;
+          margin: 0 0 7px 3px;
           font-size: 13px;
+          line-height: 16px;
+          vertical-align: top;
         `}
       >
         {rules}
@@ -141,10 +157,6 @@ const Quote = () => {
           @media (${breakpoints.desktop}) {
             width: 750px;
           }
-          div.quote-field-container {
-            display: flex;
-            flex-direction: column;
-          }
         `}
         encType="multipart/form-data"
       >
@@ -177,21 +189,9 @@ const Quote = () => {
           </div>
           <div
             className="quote-field-container"
-            css={css`
-              margin-bottom: 15px;
-              flex: 1 0 auto;
-            `}
+            css={quoteFieldContainerStyles}
           >
-            <label
-              css={css`
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #555;
-              `}
-            >
-              Name:
-            </label>
+            <label css={labelStyles}>Name:</label>
             {renderViolations("name")}
             <input
               type="text"
@@ -208,20 +208,9 @@ const Quote = () => {
           </div>
           <div
             className="quote-field-container"
-            css={css`
-              margin-bottom: 15px;
-            `}
+            css={quoteFieldContainerStyles}
           >
-            <label
-              css={css`
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #555;
-              `}
-            >
-              Email:
-            </label>
+            <label css={labelStyles}>Email:</label>
             {renderViolations("email")}
             <input
               type="email"
@@ -238,20 +227,9 @@ const Quote = () => {
           </div>
           <div
             className="quote-field-container"
-            css={css`
-              margin-bottom: 15px;
-            `}
+            css={quoteFieldContainerStyles}
           >
-            <label
-              css={css`
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #555;
-              `}
-            >
-              How many pieces:
-            </label>
+            <label css={labelStyles}>How many pieces:</label>
             {renderViolations("pieces")}
             <input
               type="number"
@@ -268,20 +246,9 @@ const Quote = () => {
           </div>
           <div
             className="quote-field-container"
-            css={css`
-              margin-bottom: 15px;
-            `}
+            css={quoteFieldContainerStyles}
           >
-            <label
-              css={css`
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #555;
-              `}
-            >
-              Garments:
-            </label>
+            <label css={labelStyles}>Garments:</label>
             {renderViolations("garments")}
             <select
               name="garments"
@@ -321,21 +288,9 @@ const Quote = () => {
           </div>
           <div
             className="quote-field-container"
-            css={css`
-              margin-bottom: 15px;
-              flex: 1 0 auto;
-            `}
+            css={quoteFieldContainerStyles}
           >
-            <label
-              css={css`
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #555;
-              `}
-            >
-              Garment Color:
-            </label>
+            <label css={labelStyles}>Garment Color:</label>
             {renderViolations("garmentColor")}
             <input
               type="text"
@@ -352,20 +307,9 @@ const Quote = () => {
           </div>
           <div
             className="quote-field-container"
-            css={css`
-              margin-bottom: 15px;
-            `}
+            css={quoteFieldContainerStyles}
           >
-            <label
-              css={css`
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #555;
-              `}
-            >
-              Art File:
-            </label>
+            <label css={labelStyles}>Art File:</label>
             {renderViolations("artFile")}
             <input
               type="file"
@@ -384,19 +328,11 @@ const Quote = () => {
           <div
             className="quote-field-container"
             css={css`
+              ${quoteFieldContainerStyles};
               margin-bottom: 30px;
             `}
           >
-            <label
-              css={css`
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #555;
-              `}
-            >
-              Description:
-            </label>
+            <label css={labelStyles}>Description:</label>
             {renderViolations("description")}
             <textarea
               name="description"
