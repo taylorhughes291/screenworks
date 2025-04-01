@@ -217,6 +217,7 @@ const Quote = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              placeholder="email@example.com"
               css={css`
                 padding: 10px;
                 border: 1px solid #ddd;
@@ -262,27 +263,27 @@ const Quote = () => {
               `}
             >
               <option value="">Select a garment</option>
+              <option value="youth-short-sleeve-tshirt">
+                Youth Short Sleeve T-Shirt
+              </option>
               <option value="short-sleeve-tshirt">Short Sleeve T-Shirt</option>
-              <option value="pullover-hooded-sweatshirt">
-                Pullover Hooded Sweatshirt
-              </option>
-              <option value="zip-hooded-sweatshirt">
-                Zip Hooded Sweatshirt
-              </option>
-              <option value="tank-top">Tank Top</option>
-              <option value="long-sleeve-tshirt">Long Sleeve T-Shirt</option>
               <option value="ladies-short-sleeve-tshirt">
                 Ladies Short Sleeve T-Shirt
               </option>
               <option value="ladies-vneck-tshirt">Ladies V-Neck T-Shirt</option>
-              <option value="youth-short-sleeve-tshirt">
-                Youth Short Sleeve T-Shirt
-              </option>
+              <option value="long-sleeve-tshirt">Long Sleeve T-Shirt</option>
+              <option value="tank-top">Tank Top</option>
               <option value="youth-hooded-sweatshirt">
                 Youth Hooded Sweatshirt
               </option>
               <option value="youth-zip-hooded-sweatshirt">
                 Youth Zip Hooded Sweatshirt
+              </option>
+              <option value="pullover-hooded-sweatshirt">
+                Pullover Hooded Sweatshirt
+              </option>
+              <option value="zip-hooded-sweatshirt">
+                Zip Hooded Sweatshirt
               </option>
             </select>
           </div>
@@ -297,6 +298,7 @@ const Quote = () => {
               name="garmentColor"
               value={formData.name}
               onChange={handleChange}
+              placeholder="White, Black, Red, etc."
               css={css`
                 padding: 10px;
                 border: 1px solid #ddd;
