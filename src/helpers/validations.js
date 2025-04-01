@@ -11,7 +11,7 @@ const requiredValidationFilled = (value, responseOverride) => {
 };
 
 const checkValidEmail = (value, responseOverride) => {
-  const errorText = "Valid email required.";
+  const errorText = "Valid email necessary";
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (emailPattern.test(value)) {
     return { label: errorText, error: false };
@@ -20,7 +20,7 @@ const checkValidEmail = (value, responseOverride) => {
 };
 
 const checkOrderMinimum = (value, responseOverride) => {
-  const errorText = "All orders must have 24 pieces at minimum.";
+  const errorText = "All orders must have 24 pieces at minimum";
   const intValue = parseInt(value, 10);
   if (intValue >= 24) {
     return {
@@ -32,7 +32,7 @@ const checkOrderMinimum = (value, responseOverride) => {
 };
 
 const checkFileSize = (files, responseOverride) => {
-  const errorText = "Total file size must be less than 25MB.";
+  const errorText = "Total file size must be less than 25MB";
   const errorResponse = {
     label: errorText,
     error: true,
@@ -52,7 +52,7 @@ const checkFileSize = (files, responseOverride) => {
 };
 
 const checkFilesCount = (files, responseOverride) => {
-  const errorText = "You may only upload up to 5 files.";
+  const errorText = "5 files maximum";
   const errorResponse = {
     label: errorText,
     error: true,
@@ -63,7 +63,7 @@ const checkFilesCount = (files, responseOverride) => {
 };
 
 const checkFileTypes = (files, responseOverride) => {
-  const errorText = "We accept only image files.";
+  const errorText = "Image files only";
   const errorResponse = {
     label: errorText,
     error: true,
@@ -81,29 +81,70 @@ const checkFileTypes = (files, responseOverride) => {
 };
 
 ////////////////////////////////
+// Non-Validation Descriptions
+////////////////////////////////
+
+const descriptionText = () => {
+  return {
+    label:
+      "Please include any details including art placement on garment, size breakdown information if you have it, or anything else you think we should know. If it starts feeling too complex, call us or send us an email. We would be happy to help!",
+    error: false,
+  };
+};
+
+const artFileText = () => {
+  return {
+    label: "If you have your art files available, please attach them here",
+    error: false,
+  };
+};
+
+////////////////////////////////
 // Validation Organization
 ////////////////////////////////
 
-const standardValidations = [
+const standardValidations = [];
+const nameValidations = [
   { name: "requiredValidationFilled", validation: requiredValidationFilled },
 ];
 const emailValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
   { name: "checkValidEmail", validation: checkValidEmail },
 ];
+const phoneValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
+];
 const piecesValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
   { name: "checkOrderMinimum", validation: checkOrderMinimum },
 ];
+const garmentsValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
+];
+const garmentColorValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
+];
 const artFileValidations = [
+  { name: "artFileText", validation: artFileText },
   { name: "checkFileSize", validation: checkFileSize },
   { name: "checkFilesCount", validation: checkFilesCount },
   { name: "checkFileTypes", validation: checkFileTypes },
 ];
+const descriptionValidations = [
+  { name: "requiredValidationFilled", validation: requiredValidationFilled },
+  { name: "descriptionText", validation: descriptionText },
+];
 
 const validations = {
   standard: standardValidations,
+  name: nameValidations,
+  phone: phoneValidations,
+  garments: garmentsValidations,
+  garmentColor: garmentColorValidations,
   email: emailValidations,
   pieces: piecesValidations,
   artFile: artFileValidations,
+  description: descriptionValidations,
 };
 
 ////////////////////////////////

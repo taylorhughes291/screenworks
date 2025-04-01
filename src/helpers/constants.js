@@ -1,9 +1,4 @@
 export const responseMapping = {
-  400: {
-    title: "File Missing",
-    type: "artFile",
-    validationName: "requiredValidationFilled",
-  },
   415: {
     title: "Invalid File Type",
     type: "artFile",
@@ -24,8 +19,10 @@ export const responseMapping = {
 export const defaultQuoteFormData = {
   name: "",
   email: "",
+  phone: "",
   pieces: "",
   garments: "",
+  garmentColor: "",
   artFile: null,
   description: "",
 };
@@ -33,8 +30,10 @@ export const defaultQuoteFormData = {
 export const defaultViolations = {
   name: [],
   email: [],
+  phone: [],
   pieces: [],
   garments: [],
+  garmentColor: [],
   artFile: [],
   description: [],
 };
