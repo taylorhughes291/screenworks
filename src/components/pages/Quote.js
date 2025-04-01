@@ -186,8 +186,8 @@ const Quote = () => {
                 font-size: 14px;
               `}
             >
-              You can submit up to three quote requests in a 24 hour period. We
-              will get back to you with your quote within 3 business days. If
+              You can submit up to five quote requests in a 24 hour period. We
+              will get back to you with your quote within 2 business days. If
               your order is more complex, go ahead and email us at{" "}
               {<EmailLink />}.
             </h3>
